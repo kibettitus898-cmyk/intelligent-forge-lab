@@ -1,27 +1,27 @@
 const skillCategories = [
   {
-    title: "AI Engineering",
-    skills: ["LLMs (GPT-4, Claude, Llama)", "Prompt Engineering", "RAG Systems", "Embeddings & Vector DBs", "AI Application Architecture"],
+    title: "AI Agents & LLM Systems",
+    skills: ["Ollama / DeepSeek-Coder", "Agent Loop Architecture", "Tool Use & Memory", "Prompt Engineering", "Local LLM Workflows"],
   },
   {
-    title: "Agentic Workflows",
-    skills: ["LangChain / LangGraph", "CrewAI", "AutoGen", "Multi-Agent Orchestration", "Human-in-the-Loop Systems"],
+    title: "Machine Learning & MLOps",
+    skills: ["CatBoost / Scikit-learn", "PyTorch / Hugging Face", "Feature Engineering", "MLflow / W&B", "Automated Retraining Pipelines"],
   },
   {
-    title: "Model Training & Evaluation",
-    skills: ["PyTorch / TensorFlow", "Hugging Face Transformers", "Fine-Tuning & RLHF", "Model Evaluation & Benchmarking", "Data Pipeline Design"],
+    title: "Backend & APIs",
+    skills: ["FastAPI / Python", "Spring Boot / Java", "SQLAlchemy / Room DB", "PostgreSQL / MongoDB / SQLite", "RESTful API Design"],
   },
   {
-    title: "MLOps / Deployment",
-    skills: ["MLflow / Weights & Biases", "Model Serving (TorchServe, vLLM)", "CI/CD for ML", "Monitoring & Observability", "A/B Testing"],
+    title: "Security Automation & Research",
+    skills: ["Exposed Secret Detection", "Regex & Entropy Scanning", "Reinforcement Learning (PPO/SAC/DQN)", "NASim / Sandboxed Environments", "Responsible Disclosure Workflows"],
   },
   {
-    title: "Cloud & Infrastructure",
-    skills: ["AWS / GCP / Azure", "Docker & Kubernetes", "Terraform", "Serverless (Lambda, Cloud Functions)", "PostgreSQL / Redis"],
+    title: "Mobile & Full-Stack Engineering",
+    skills: ["Android SDK / Java", "MVVM / Hilt / Room", "Material Design 3", "Gemini AI Integration", "HTML / JavaScript / Bootstrap"],
   },
   {
-    title: "Security & DevOps",
-    skills: ["SOC 2 Compliance", "Data Encryption & PII Handling", "API Security", "Infrastructure as Code", "Secrets Management"],
+    title: "Cloud, DevOps & Deployment",
+    skills: ["Docker / docker-compose", "GitHub Actions CI/CD", "Hugging Face Spaces", "Supabase / MongoDB Atlas", "Google Colab / Cloud Environments"],
   },
 ];
 

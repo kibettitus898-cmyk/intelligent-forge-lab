@@ -18,7 +18,7 @@ export function Hero() {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-          <span className="text-foreground">Alex Engineer</span>
+          <span className="text-foreground">Titus Kibet</span>
         </h1>
 
         <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in font-light leading-relaxed" style={{ animationDelay: "0.2s" }}>
@@ -26,7 +26,7 @@ export function Hero() {
         </p>
 
         <p className="text-base text-steel max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-          Helping businesses, startups, and technical teams deliver scalable AI solutions with measurable impact.
+          AI engineer building practical AI agents, local LLM systems, ML pipelines, and secure software for real-world business and research use cases.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>

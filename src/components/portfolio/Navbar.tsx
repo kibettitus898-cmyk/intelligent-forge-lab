@@ -30,7 +30,7 @@ export function Navbar() {
     >
       <div className="container-narrow flex items-center justify-between h-16 md:h-20">
         <a href="#" className="font-heading font-bold text-xl tracking-tight text-foreground">
-          &lt;AE /&gt;
+          &lt;TK /&gt;
         </a>
 
         <div className="hidden md:flex items-center gap-8">
