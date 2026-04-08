@@ -6,6 +6,7 @@ import { Footer } from "@/components/portfolio/Footer";
 
 const caseStudies: Record<string, {
   title: string;
+  status: string;
   overview: string;
   challenge: string;
   solution: string;
@@ -14,124 +15,183 @@ const caseStudies: Record<string, {
   results: string[];
   lessons: string[];
 }> = {
-  "invoice-agent": {
-    title: "AI Invoice Processing Agent",
-    overview: "An autonomous AI agent that processes, validates, and reconciles invoices across multiple formats and vendors — replacing a manual, error-prone workflow.",
-    challenge: "A mid-size logistics company was spending 40+ hours per week manually processing invoices from 200+ vendors. Error rates exceeded 8%, leading to payment delays and strained vendor relationships.",
-    solution: "Built an agentic pipeline using GPT-4 for document understanding, with structured extraction, cross-referencing against PO databases, and automated exception handling with human escalation.",
-    stack: ["GPT-4", "LangChain", "Python", "FastAPI", "PostgreSQL", "Docker", "AWS Lambda"],
+  "epl-predictor": {
+    title: "EPL Match Predictor",
+    status: "Completed",
+    overview: "A complete machine learning pipeline that predicts English Premier League match outcomes (Home / Draw / Away) using three seasons of API-Football data, deployed as a production-ready service with automated retraining.",
+    challenge: "Predicting football match outcomes is notoriously difficult due to noisy data, class imbalance, and the risk of data leakage from future-aware features. The goal was to build a robust, reproducible ML system — not just a notebook experiment.",
+    solution: "Built an end-to-end pipeline covering raw data ingestion, leakage-safe feature engineering, CatBoost model training, FastAPI inference serving, Docker containerization, and Hugging Face Spaces deployment with weekly automated retraining via GitHub Actions.",
+    stack: ["Python", "CatBoost", "Google Colab", "Supabase", "FastAPI", "Docker", "GitHub Actions", "Hugging Face Spaces"],
     highlights: [
-      "Multi-format parsing (PDF, images, email attachments) with 99.2% extraction accuracy",
-      "Intelligent routing — auto-approves standard invoices, flags exceptions for review",
-      "Real-time dashboard for tracking processing status and audit trails",
-      "Retry logic and graceful degradation for API failures",
+      "Fetched 380+ EPL fixtures via API-Football with data quality checks for duplicates and null teams",
+      "Engineered 15 leakage-safe features including rolling stats, streaks, h2h rates, venue and time features",
+      "Used shift(1) and closed='left' rolling windows to strictly prevent data leakage",
+      "Persisted team encoders for consistent inference across retraining cycles",
+      "Productionized with Docker, FastAPI, Hugging Face Spaces, and GitHub Actions CI/CD",
+      "Implemented safety gates for precision, F1, and Brier score before model promotion",
     ],
     results: [
-      "85% reduction in manual processing time",
-      "Error rate dropped from 8% to 0.8%",
-      "ROI achieved within 6 weeks of deployment",
-      "Processing capacity scaled from 500 to 5,000 invoices/month",
+      "CatBoost multiclass model with 62% precision and 58% F1",
+      "Zero-cost infrastructure using free-tier tools (Colab, Supabase, HF Spaces)",
+      "Weekly automated retraining with safety gates",
+      "Full MLOps pipeline: data → train → evaluate → deploy → monitor",
     ],
     lessons: [
-      "Hybrid AI + rule-based approaches outperform pure LLM solutions for structured data",
-      "Human-in-the-loop checkpoints are essential for financial workflows",
-      "Investing in robust error handling early saves significant debugging time",
+      "Leakage-safe feature engineering is the single most important step in sports prediction ML",
+      "Shift-based rolling windows and strict temporal splits prevent overoptimistic validation scores",
+      "Safety gates on retraining prevent model regressions from being auto-promoted to production",
+      "Free-tier tooling can support production-grade ML when architected carefully",
     ],
   },
-  "rag-assistant": {
-    title: "Custom RAG Knowledge Assistant",
-    overview: "A retrieval-augmented generation system enabling support teams to instantly find accurate answers from a large, unstructured knowledge base.",
-    challenge: "Support teams were struggling to locate answers across 10,000+ internal documents stored in various formats and locations. Average resolution time was 45 minutes per ticket.",
-    solution: "Designed a RAG pipeline with semantic chunking, hybrid search (dense + sparse), and a citation system that links every answer to its source document.",
-    stack: ["OpenAI", "Pinecone", "LangChain", "Next.js", "AWS", "S3"],
+  "ai-coding-agent": {
+    title: "Python AI Coding Agent with Ollama",
+    status: "Ongoing",
+    overview: "An autonomous local AI coding assistant that reads, refactors, tests, and generates Python code using Ollama and DeepSeek-Coder 33B, running entirely on local hardware for privacy-preserving workflows.",
+    challenge: "Cloud-based AI coding tools send proprietary code to external servers. For sensitive codebases, a fully local alternative is needed — one that can understand context, propose safe changes, and validate output without external API calls.",
+    solution: "Building an agent-style orchestration system where the AI follows a structured loop: receive task → inspect files → propose changes → generate diffs → validate output in a sandbox — all running locally via Ollama.",
+    stack: ["Python", "Ollama", "DeepSeek-Coder 33B", "Local Ubuntu", "Git Tooling", "Sandbox Execution"],
     highlights: [
-      "Semantic chunking with overlap for context preservation",
-      "Hybrid retrieval combining vector similarity and keyword search",
-      "Citation tracking — every answer includes source links",
-      "Feedback loop for continuous retrieval quality improvement",
+      "Agent loop architecture: task → inspect → propose → diff → validate",
+      "Reads and understands existing Python codebases for context-aware generation",
+      "Generates functions, classes, and scripts with type hints and docstrings",
+      "Sandbox execution for safe code validation before committing changes",
+      "Reusable agent skeleton designed for extensibility with additional tools",
     ],
     results: [
-      "60% faster ticket resolution times",
-      "Adopted by 200+ team members within first month",
-      "95% answer relevance rate based on user feedback",
-      "Reduced escalations to senior staff by 40%",
+      "Fully local, privacy-preserving coding workflow",
+      "Reusable agent architecture extendable with custom tools",
+      "Demonstrates local LLM integration, tool use, memory, and safety boundaries",
     ],
     lessons: [
-      "Chunking strategy is the single biggest factor in RAG quality",
-      "Hybrid search consistently outperforms pure vector search",
-      "User trust requires transparent source attribution",
+      "Local LLMs require careful prompt engineering due to smaller context windows",
+      "Agent-style orchestration adds reliability over single-shot code generation",
+      "Sandbox execution is essential for safe automated code changes",
     ],
   },
-  "workflow-agent": {
-    title: "Multi-Step Business Workflow Agent",
-    overview: "A multi-agent system that orchestrates complex cross-department approval workflows with intelligent routing and human-in-the-loop checkpoints.",
-    challenge: "A financial services firm's approval workflows required manual coordination across 5 departments, with frequent bottlenecks causing 2-week delays on critical decisions.",
-    solution: "Implemented a CrewAI-based multi-agent system where specialized agents handle different workflow stages, with configurable escalation rules and real-time status tracking.",
-    stack: ["CrewAI", "GPT-4", "Redis", "Docker", "GCP", "Cloud Run"],
+  "api-key-agent": {
+    title: "API Key Exposure Detection & Responsible Disclosure Agent",
+    status: "Ongoing",
+    overview: "An AI-assisted security agent that scans public sources for exposed API keys and secrets, classifies findings using pattern matching and local LLMs, and generates redacted reports for ethical responsible disclosure.",
+    challenge: "API key leaks in public repositories are a widespread security problem. Manual scanning is slow, and many automated tools produce excessive false positives. An intelligent triage layer is needed.",
+    solution: "Building a detection pipeline combining regex/entropy-based scanning with AI-assisted classification via Ollama, DuckDB for findings storage, Streamlit for dashboard visualization, and PDF reporting for responsible disclosure workflows.",
+    stack: ["Python", "Regex/Entropy Scanning", "Ollama", "DuckDB", "Streamlit", "PDF Reporting"],
     highlights: [
-      "Role-specific agents for compliance, finance, legal, and operations",
-      "Configurable approval thresholds and escalation paths",
-      "Real-time Slack/email notifications at each stage",
-      "Full audit trail with decision reasoning captured",
+      "Pattern matching and entropy analysis for likely real key detection",
+      "AI-assisted classification to reduce false positives",
+      "Professional redacted report generation for responsible disclosure",
+      "Lightweight dashboard for tracking disclosure status",
+      "Strictly passive, public-source scanning — ethical by design",
     ],
     results: [
-      "3x faster workflow completion (14 days → 4.5 days average)",
-      "Zero missed approvals since deployment",
-      "98% on-time completion rate",
-      "Saved 120+ hours/month in administrative overhead",
+      "Proactive exposed-secret detection from public sources",
+      "AI-driven triage reducing manual review burden",
+      "Reusable open-source security automation pattern",
     ],
     lessons: [
-      "Agent specialization yields better results than general-purpose agents",
-      "Explicit handoff protocols between agents prevent dropped tasks",
-      "Observability into agent reasoning is critical for compliance",
+      "Combining regex with entropy analysis significantly reduces false positives",
+      "Responsible disclosure requires careful redaction and professional communication",
+      "Ethical framing and transparency are essential in security tooling",
     ],
   },
-  "prediction-model": {
-    title: "Fine-Tuned Prediction Model",
-    overview: "A custom transformer model fine-tuned on manufacturing sensor data for predictive quality control, detecting defects before they occur.",
-    challenge: "Generic anomaly detection models were achieving only 72% accuracy on domain-specific manufacturing patterns, missing critical defects and generating excessive false positives.",
-    solution: "Fine-tuned a transformer architecture on 18 months of labeled sensor data, implementing custom loss functions and domain-specific feature engineering.",
-    stack: ["PyTorch", "Hugging Face", "MLflow", "Kubernetes", "Azure ML"],
+  "tenantflow": {
+    title: "TenantFlow – Tenant & Receipt Management System",
+    status: "Ongoing",
+    overview: "A tenant management web application for landlords to manage tenants, monthly payments, and digital receipts, with a RESTful backend and architecture ready for AI extensions.",
+    challenge: "Small landlords often manage tenants, payments, and receipts manually using spreadsheets or paper — leading to missed payments, lost records, and no audit trail.",
+    solution: "Building a modern web app with a FastAPI backend and relational schema covering landlords, properties, units, tenants, charges, payments, and receipts — designed for low-cost self-hosting with planned WhatsApp receipt delivery.",
+    stack: ["HTML", "JavaScript", "FastAPI", "SQLAlchemy", "SQLite / PostgreSQL"],
     highlights: [
-      "Custom data pipeline processing 50M+ sensor readings",
-      "Domain-adapted tokenization for time-series data",
-      "Ensemble approach combining transformer with gradient boosting",
-      "Automated retraining pipeline triggered by drift detection",
+      "Auditable relational schema for the full landlord-tenant lifecycle",
+      "RESTful API with clean endpoint design",
+      "Digital receipt generation and payment history tracking",
+      "Architecture ready for WhatsApp integration and AI-powered reminders",
+      "Designed for low-cost deployment on free-tier infrastructure",
     ],
     results: [
-      "92% prediction accuracy (up from 72%)",
-      "$2.1M annual savings in defect prevention",
-      "False positive rate reduced by 65%",
-      "Model inference latency under 50ms for real-time monitoring",
+      "Working prototype with tenant profiles, payment tracking, and receipt generation",
+      "Extensible architecture ready for AI features like tenant risk scoring",
     ],
     lessons: [
-      "Domain expertise in feature engineering matters more than model size",
-      "Drift detection is essential for maintaining production accuracy",
-      "Ensemble methods provide more robust predictions than single models",
+      "Real-world workflow modeling requires deep understanding of the domain",
+      "Starting with a clean schema makes future AI extensions much easier",
+      "Low-cost deployment targets force good architectural discipline",
     ],
   },
-  "document-system": {
-    title: "AI Secure Document Processing",
-    overview: "An end-to-end encrypted document processing pipeline with AI-powered classification, entity extraction, and automated redaction for compliance.",
-    challenge: "A regulated financial firm needed to process sensitive client documents while maintaining strict SOC 2 compliance. Manual review was consuming 60% of the compliance team's capacity.",
-    solution: "Built a zero-trust document pipeline with client-side encryption, AI classification, PII detection and redaction, and comprehensive audit logging.",
-    stack: ["Azure AI", "Python", "Terraform", "PostgreSQL", "Docker", "Azure Key Vault"],
+  "rl-red-team": {
+    title: "RL-Powered AI Red Team Agent",
+    status: "Ongoing",
+    overview: "A research-grade reinforcement learning agent trained to perform penetration testing tasks in simulated network environments, strictly confined to sandboxed lab environments for ethical research.",
+    challenge: "Traditional penetration testing is manual, time-consuming, and depends on expert knowledge. Reinforcement learning offers the potential for autonomous policy learning — but only if done ethically in controlled environments.",
+    solution: "Training RL agents (PPO, SAC, DQN) on NASim simulated networks, with shaped rewards, experiment tracking via W&B and TensorBoard, and reproducible benchmarks against random and rule-based baselines.",
+    stack: ["Python", "Stable Baselines3", "PPO / SAC / DQN", "NASim", "Weights & Biases", "TensorBoard", "Plotly", "LaTeX"],
     highlights: [
-      "End-to-end encryption with customer-managed keys",
-      "AI classification across 15 document types with 97% accuracy",
-      "Automated PII detection and configurable redaction policies",
-      "Immutable audit trail for all processing actions",
+      "Pentest-like observation and action spaces defined for RL training",
+      "Shaped reward functions for meaningful attack-policy learning",
+      "Multi-scenario evaluation for generalization testing",
+      "Full experiment tracking with reproducible benchmarks",
+      "Technical paper documenting methodology and findings",
+      "All work strictly confined to sandboxed simulated environments",
     ],
     results: [
-      "SOC 2 Type II certification achieved",
-      "70% reduction in manual review time",
-      "Zero security incidents in 12 months of operation",
-      "Processing throughput increased 5x",
+      "Autonomous attack-policy learning in simulated networks",
+      "Reproducible benchmarks against random and rule-based baselines",
+      "Technical paper and open-source research artifact in progress",
     ],
     lessons: [
-      "Security architecture must be designed upfront, not bolted on",
-      "Configurable redaction policies are essential for different use cases",
-      "Regular penetration testing builds genuine confidence in the system",
+      "Reward shaping is critical for meaningful RL policy learning in security domains",
+      "Ethical boundaries must be designed into the system from day one",
+      "Simulated environments enable rigorous research without real-world risk",
+    ],
+  },
+  "student-meetup": {
+    title: "Student Meet-Up Platform",
+    status: "Completed",
+    overview: "A full-stack cloud-hosted platform for university students to publish, discover, and register for meet-ups, enriched with weather and location intelligence from external APIs.",
+    challenge: "University students lacked a centralized platform to organize and discover campus events, with no integration of practical information like weather conditions or nearby points of interest.",
+    solution: "Built a Spring Boot REST API with MongoDB persistence, Bootstrap frontend, and integrations with OpenWeatherMap, Skiddle, and GeoNames APIs — all containerized with Docker and performance-tested with JMeter.",
+    stack: ["Java 21", "Spring Boot 3", "MongoDB Atlas", "Docker", "docker-compose", "Bootstrap 5", "Postman", "Apache JMeter"],
+    highlights: [
+      "RESTful API with event CRUD, registration, and ratings",
+      "External API integration for weather, events, and geolocation",
+      "Dockerized multi-container environment",
+      "QoS performance testing with JMeter under concurrent load",
+      "Handled API authentication, rate limiting, and geocoding edge cases",
+    ],
+    results: [
+      "Fully working containerized service-oriented application",
+      "Tested scalability under concurrent load",
+      "Complete technical documentation",
+    ],
+    lessons: [
+      "External API integration requires robust error handling and rate limit management",
+      "Docker simplifies deployment but adds complexity to local development debugging",
+      "Performance testing early reveals bottlenecks before they reach production",
+    ],
+  },
+  "curlcare": {
+    title: "CurlCare – AI Hair Consultant App",
+    status: "Completed",
+    overview: "A premium Android app for the natural hair community combining service booking, educational content, journal tracking, and an AI hair consultant called Crown — powered by Gemini AI.",
+    challenge: "The natural hair community lacked a dedicated mobile platform that combined practical tools (booking, tracking) with intelligent guidance — most apps were either too generic or lacked AI-powered personalization.",
+    solution: "Built a production-ready Android app with MVVM architecture, Hilt dependency injection, Room persistence, Material Design 3 UI, and Gemini AI integration for the Crown hair advisor feature.",
+    stack: ["Java", "Android SDK", "MVVM", "Room Database", "Hilt", "Material Design 3", "RxJava", "Gemini AI SDK"],
+    highlights: [
+      "AI hair advisor (Crown) powered by Gemini for personalized recommendations",
+      "Intelligent booking engine for hair services",
+      "Educational content hub with categorized articles",
+      "Journal tracking for hair care routines",
+      "Production-ready MVVM architecture with dependency injection",
+      "Polished Material Design 3 interface",
+    ],
+    results: [
+      "Production-ready app with complete feature delivery",
+      "Successful Gemini AI integration for intelligent recommendations",
+      "Multi-module architecture demonstrating senior-level Android engineering",
+    ],
+    lessons: [
+      "AI integration in mobile apps requires careful UX design for response latency",
+      "MVVM with Hilt provides clean separation and testability",
+      "Material Design 3 theming enables rapid UI iteration with consistent quality",
     ],
   },
 };
@@ -169,9 +229,18 @@ export default function CaseStudy() {
             <Link to="/#projects"><ArrowLeft className="h-4 w-4 mr-2" /> Back to Projects</Link>
           </Button>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight mb-6">
-            {study.title}
-          </h1>
+          <div className="flex items-center gap-3 mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight">
+              {study.title}
+            </h1>
+            <span className={`text-xs font-medium tracking-wider uppercase px-2.5 py-1 rounded-md shrink-0 ${
+              study.status === "Completed"
+                ? "bg-green-500/10 text-green-500"
+                : "bg-amber-500/10 text-amber-500"
+            }`}>
+              {study.status}
+            </span>
+          </div>
 
           <div className="flex flex-wrap gap-2 mb-8">
             {study.stack.map((tech) => (

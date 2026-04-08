@@ -1,61 +1,143 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const categories = ["All", "Agents", "LLM", "ML/AI", "Automation"];
+const categories = ["All", "ML/AI", "Agents", "Full-Stack", "Security", "Mobile"];
 
-const projects = [
+export interface Project {
+  id: string;
+  title: string;
+  summary: string;
+  stack: string[];
+  outcome: string;
+  category: string;
+  status: "Completed" | "Ongoing";
+}
+
+const featuredProjects: Project[] = [
   {
-    id: "invoice-agent",
-    title: "AI Invoice Processing Agent",
-    problem: "Manual invoice processing consuming 40+ hours/week with frequent errors",
-    stack: ["GPT-4", "LangChain", "Python", "FastAPI", "PostgreSQL"],
-    built: "Autonomous agent that extracts, validates, and reconciles invoice data across formats",
-    outcome: "85% reduction in processing time, 99.2% accuracy rate",
-    category: "Agents",
-  },
-  {
-    id: "rag-assistant",
-    title: "Custom RAG Knowledge Assistant",
-    problem: "Support teams unable to quickly access answers from 10K+ internal documents",
-    stack: ["OpenAI", "Pinecone", "LangChain", "Next.js", "AWS"],
-    built: "Retrieval-augmented generation system with semantic search and citation tracking",
-    outcome: "60% faster resolution times, adopted by 200+ team members",
-    category: "LLM",
-  },
-  {
-    id: "workflow-agent",
-    title: "Multi-Step Business Workflow Agent",
-    problem: "Complex approval workflows requiring manual coordination across 5 departments",
-    stack: ["CrewAI", "GPT-4", "Redis", "Docker", "GCP"],
-    built: "Multi-agent system orchestrating cross-department workflows with human-in-the-loop checkpoints",
-    outcome: "3x faster workflow completion, zero missed approvals",
-    category: "Agents",
-  },
-  {
-    id: "prediction-model",
-    title: "Fine-Tuned Prediction Model",
-    problem: "Generic models failing to capture domain-specific patterns in manufacturing data",
-    stack: ["PyTorch", "Hugging Face", "MLflow", "Kubernetes", "Azure"],
-    built: "Custom fine-tuned transformer model for predictive quality control",
-    outcome: "92% prediction accuracy, $2.1M annual savings in defect prevention",
+    id: "epl-predictor",
+    title: "EPL Match Predictor",
+    summary: "End-to-end ML pipeline predicting Premier League match outcomes using CatBoost, with automated retraining, safety gates, and zero-cost deployment on Hugging Face Spaces.",
+    stack: ["Python", "CatBoost", "FastAPI", "Supabase", "Docker", "GitHub Actions", "Hugging Face"],
+    outcome: "62% precision, 58% F1, fully automated weekly retraining with safety gates",
     category: "ML/AI",
+    status: "Completed",
   },
   {
-    id: "document-system",
-    title: "AI Secure Document Processing",
-    problem: "Sensitive documents requiring manual review with strict compliance requirements",
-    stack: ["Azure AI", "Python", "Terraform", "PostgreSQL", "Docker"],
-    built: "End-to-end encrypted document processing pipeline with AI classification and redaction",
-    outcome: "SOC 2 compliant, 70% reduction in manual review time",
-    category: "Automation",
+    id: "ai-coding-agent",
+    title: "Python AI Coding Agent with Ollama",
+    summary: "A local autonomous coding assistant that reads, refactors, tests, and generates Python code using DeepSeek-Coder 33B with agent-style orchestration and sandbox execution.",
+    stack: ["Python", "Ollama", "DeepSeek-Coder 33B", "Git", "Sandbox Tooling"],
+    outcome: "Privacy-preserving local AI agent with tool use, memory, and safety boundaries",
+    category: "Agents",
+    status: "Ongoing",
+  },
+  {
+    id: "api-key-agent",
+    title: "API Key Exposure Detection Agent",
+    summary: "AI-assisted security agent that scans public sources for exposed secrets, classifies findings with local LLMs, and generates redacted responsible disclosure reports.",
+    stack: ["Python", "Ollama", "DuckDB", "Streamlit", "Regex/Entropy Scanning"],
+    outcome: "Automated secret detection with AI triage and responsible disclosure workflows",
+    category: "Security",
+    status: "Ongoing",
   },
 ];
 
+const moreProjects: Project[] = [
+  {
+    id: "tenantflow",
+    title: "TenantFlow – Tenant & Receipt Management",
+    summary: "A tenant management web app for landlords to manage tenants, payments, and digital receipts with a RESTful API backend and planned WhatsApp integration.",
+    stack: ["HTML", "JavaScript", "FastAPI", "SQLAlchemy", "PostgreSQL"],
+    outcome: "Auditable relational schema ready for low-cost deployment and AI extensions",
+    category: "Full-Stack",
+    status: "Ongoing",
+  },
+  {
+    id: "rl-red-team",
+    title: "RL-Powered AI Red Team Agent",
+    summary: "Reinforcement learning agent trained on NASim to learn penetration testing policies in simulated network environments, with experiment tracking and reproducible benchmarks.",
+    stack: ["Python", "Stable Baselines3", "PPO/SAC/DQN", "NASim", "W&B", "TensorBoard"],
+    outcome: "Autonomous attack-policy learning in sandboxed simulated environments",
+    category: "Security",
+    status: "Ongoing",
+  },
+  {
+    id: "student-meetup",
+    title: "Student Meet-Up Platform",
+    summary: "Full-stack cloud platform for university students to publish, discover, and register for meet-ups, enriched with weather and location intelligence from external APIs.",
+    stack: ["Java 21", "Spring Boot 3", "MongoDB Atlas", "Docker", "Bootstrap 5"],
+    outcome: "Containerized service-oriented app with tested scalability and full documentation",
+    category: "Full-Stack",
+    status: "Completed",
+  },
+  {
+    id: "curlcare",
+    title: "CurlCare – AI Hair Consultant App",
+    summary: "Premium Android app combining service booking, educational content, journal tracking, and an AI hair advisor powered by Gemini, built with MVVM and Material Design 3.",
+    stack: ["Java", "Android SDK", "MVVM", "Room DB", "Hilt", "Gemini AI"],
+    outcome: "Production-ready mobile app with AI integration and polished UI/UX",
+    category: "Mobile",
+    status: "Completed",
+  },
+];
+
+function ProjectCard({ project, showCaseStudy = true }: { project: Project; showCaseStudy?: boolean }) {
+  return (
+    <article className="group bg-card border border-border rounded-xl p-6 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-medium text-primary tracking-wider uppercase bg-primary/10 px-2.5 py-1 rounded-md">
+            {project.category}
+          </span>
+          <span className={`text-xs font-medium tracking-wider uppercase px-2.5 py-1 rounded-md ${
+            project.status === "Completed"
+              ? "bg-green-500/10 text-green-500"
+              : "bg-amber-500/10 text-amber-500"
+          }`}>
+            {project.status}
+          </span>
+        </div>
+        <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+      </div>
+
+      <h3 className="text-xl font-heading font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
+        {project.title}
+      </h3>
+
+      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+        {project.summary}
+      </p>
+
+      <p className="text-sm font-medium text-primary mb-4">
+        ↗ {project.outcome}
+      </p>
+
+      <div className="flex flex-wrap gap-1.5 mb-5">
+        {project.stack.map((tech) => (
+          <span key={tech} className="text-xs px-2 py-0.5 rounded bg-secondary text-secondary-foreground">
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      {showCaseStudy && (
+        <Button size="sm" variant="outline" asChild>
+          <Link to={`/case-study/${project.id}`}>View Case Study</Link>
+        </Button>
+      )}
+    </article>
+  );
+}
+
 export function Projects() {
   const [active, setActive] = useState("All");
-  const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
+  const allProjects = [...featuredProjects, ...moreProjects];
+  const filtered = active === "All" ? allProjects : allProjects.filter((p) => p.category === active);
+  const featuredFiltered = filtered.filter((p) => featuredProjects.some((fp) => fp.id === p.id));
+  const moreFiltered = filtered.filter((p) => moreProjects.some((mp) => mp.id === p.id));
 
   return (
     <section id="projects" className="section-padding bg-secondary/30">
@@ -66,7 +148,7 @@ export function Projects() {
             Featured Projects
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Real-world AI systems built for production — each solving a specific business challenge with measurable results.
+            Real AI systems and engineering projects — each solving a specific challenge with practical, production-oriented thinking.
           </p>
         </div>
 
@@ -86,59 +168,31 @@ export function Projects() {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {filtered.map((project) => (
-            <article
-              key={project.id}
-              className="group bg-card border border-border rounded-xl p-6 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <span className="text-xs font-medium text-primary tracking-wider uppercase bg-primary/10 px-2.5 py-1 rounded-md">
-                  {project.category}
-                </span>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
+        {/* Featured */}
+        {featuredFiltered.length > 0 && (
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            {featuredFiltered.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        )}
 
-              <h3 className="text-xl font-heading font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
-                {project.title}
+        {/* Selected Work */}
+        {moreFiltered.length > 0 && (
+          <>
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-heading font-bold tracking-tight text-foreground">
+                Selected Work
               </h3>
-
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                <span className="font-medium text-foreground">Problem:</span> {project.problem}
-              </p>
-
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                <span className="font-medium text-foreground">Built:</span> {project.built}
-              </p>
-
-              <p className="text-sm font-medium text-primary mb-4">
-                ↗ {project.outcome}
-              </p>
-
-              <div className="flex flex-wrap gap-1.5 mb-5">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-xs px-2 py-0.5 rounded bg-secondary text-secondary-foreground"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-3">
-                <Button size="sm" variant="outline" asChild>
-                  <Link to={`/case-study/${project.id}`}>
-                    View Case Study
-                  </Link>
-                </Button>
-                <Button size="sm" variant="ghost" className="text-muted-foreground">
-                  <ExternalLink className="h-3.5 w-3.5 mr-1" /> Live Demo
-                </Button>
-              </div>
-            </article>
-          ))}
-        </div>
+              <p className="text-sm text-muted-foreground mt-2">Additional projects across full-stack, mobile, and security engineering.</p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {moreFiltered.map((project) => (
+                <ProjectCard key={project.id} project={project} showCaseStudy={true} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

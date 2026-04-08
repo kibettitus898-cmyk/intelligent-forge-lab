@@ -1,11 +1,13 @@
-import { Bot, Brain, Cloud, Code, Lock, Rocket } from "lucide-react";
+import { Bot, Brain, Cloud, Code, Lock, Rocket, Smartphone, Shield } from "lucide-react";
 
 const capabilities = [
   { icon: Bot, label: "AI Agents & Workflow Automation" },
-  { icon: Brain, label: "LLM Applications" },
+  { icon: Brain, label: "LLM Applications & Local AI" },
   { icon: Code, label: "Model Training & Evaluation" },
-  { icon: Rocket, label: "API Integrations" },
-  { icon: Cloud, label: "Cloud Deployment" },
+  { icon: Rocket, label: "Backend & API Engineering" },
+  { icon: Cloud, label: "Cloud Deployment & MLOps" },
+  { icon: Shield, label: "Security Automation & Research" },
+  { icon: Smartphone, label: "Mobile & Full-Stack Engineering" },
   { icon: Lock, label: "AI Prototyping for Startups & Businesses" },
 ];
 
@@ -17,17 +19,17 @@ export function About() {
           <div>
             <p className="text-sm font-medium text-primary tracking-widest uppercase mb-3">About</p>
             <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-6">
-              Engineering AI that delivers business value
+              Engineering AI that solves real problems
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm an AI engineer focused on turning complex business problems into production-ready AI systems. My work spans the full AI lifecycle — from prototyping and model training to agent orchestration and cloud deployment.
+                I'm Titus Kibet — an AI engineer and systems builder with hands-on experience across AI agents, machine learning pipelines, full-stack product development, cloud deployment, and security-focused engineering.
               </p>
               <p>
-                I combine deep technical expertise in LLMs, machine learning, and software engineering with a clear understanding of business outcomes. Every system I build is designed for reliability, scalability, and measurable impact.
+                My work spans the full AI lifecycle: from data ingestion and model training to agent orchestration, API design, and production deployment. I build systems that are practical, reproducible, and designed for real-world use — not just demos.
               </p>
               <p>
-                Whether you need an autonomous agent handling multi-step workflows, a fine-tuned model for domain-specific predictions, or an AI-powered document processing pipeline — I architect and deliver solutions that work in production.
+                Whether it's a locally-hosted coding agent, a match prediction ML pipeline, a tenant management platform, or an RL-powered security research tool — I architect and deliver solutions grounded in solid engineering and clear thinking.
               </p>
             </div>
           </div>
