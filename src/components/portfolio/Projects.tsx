@@ -86,24 +86,41 @@ const moreProjects: Project[] = [
 
 function ProjectCard({ project, showCaseStudy = true }: { project: Project; showCaseStudy?: boolean }) {
   return (
-    <article className="group bg-card border border-border rounded-xl p-6 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+    <article
+      className="group relative overflow-hidden rounded-2xl p-7 transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01]"
+      style={{
+        background: 'rgba(255, 255, 255, 0.04)',
+        backdropFilter: 'blur(16px) saturate(150%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(150%)',
+        border: '1px solid rgba(255, 255, 255, 0.07)',
+        boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '0 8px 40px rgba(0, 212, 200, 0.12)';
+        e.currentTarget.style.borderColor = 'rgba(0, 212, 200, 0.25)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.3)';
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.07)';
+      }}
+    >
+      {/* Teal accent line — visible on hover */}
+      <span className="absolute top-4 left-0 w-[3px] h-[40px] bg-primary rounded-r opacity-0 group-hover:opacity-100 transition-opacity duration-[280ms]" />
+
       <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-2">
-           <span className="text-label uppercase text-primary tracking-wider bg-primary/10 px-2.5 py-1 rounded-md font-body">
-            {project.category}
-          </span>
-          <span className={`text-label uppercase tracking-wider px-2.5 py-1 rounded-md font-body ${
-            project.status === "Completed"
-              ? "bg-green-500/10 text-green-500"
-              : "bg-amber-500/10 text-amber-500"
-          }`}>
-            {project.status}
-          </span>
-        </div>
-        <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+        <span className="text-label uppercase text-primary tracking-wider bg-primary/10 px-2.5 py-1 rounded-md font-body">
+          {project.category}
+        </span>
+        <span className={`text-label uppercase tracking-wider px-2.5 py-1 rounded-md font-body ${
+          project.status === "Completed"
+            ? "bg-teal-500/10 text-teal-400"
+            : "bg-amber-500/10 text-amber-400"
+        }`}>
+          {project.status}
+        </span>
       </div>
 
-      <h3 className="text-card-title font-heading mb-3 text-foreground group-hover:text-primary transition-colors">
+      <h3 className="text-card-title font-heading mb-3 text-foreground group-hover:text-primary transition-colors duration-[280ms]">
         {project.title}
       </h3>
 
@@ -117,7 +134,7 @@ function ProjectCard({ project, showCaseStudy = true }: { project: Project; show
 
       <div className="flex flex-wrap gap-1.5 mb-5">
         {project.stack.map((tech) => (
-          <span key={tech} className="text-xs px-2 py-0.5 rounded bg-secondary text-secondary-foreground font-body">
+          <span key={tech} className="text-xs px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.08] text-muted-foreground font-body">
             {tech}
           </span>
         ))}
