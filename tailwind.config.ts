@@ -14,8 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-        body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        heading: ['"Cabinet Grotesk"', 'system-ui', 'sans-serif'],
+        body: ['"Satoshi"', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'hero': ['clamp(3rem, 7vw, 8rem)', { lineHeight: '1.05', fontWeight: '800' }],
+        'section': ['clamp(1.75rem, 3vw, 2.5rem)', { lineHeight: '1.2', fontWeight: '700' }],
+        'card-title': ['clamp(1.1rem, 2vw, 1.35rem)', { lineHeight: '1.3', fontWeight: '600' }],
+        'label': ['0.8125rem', { lineHeight: '1.4', fontWeight: '500', letterSpacing: '0.06em' }],
       },
       colors: {
         border: "hsl(var(--border))",
