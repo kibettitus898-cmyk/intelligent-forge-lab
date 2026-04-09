@@ -215,7 +215,7 @@ export default function CaseStudy() {
 
   const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div className="mb-10">
-      <h3 className="text-lg font-heading font-semibold text-primary mb-3">{title}</h3>
+      <h3 className="text-card-title font-heading text-primary mb-3">{title}</h3>
       {children}
     </div>
   );
@@ -230,10 +230,10 @@ export default function CaseStudy() {
           </Button>
 
           <div className="flex items-center gap-3 mb-6">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight">
+            <h1 className="text-hero font-heading tracking-tight">
               {study.title}
             </h1>
-            <span className={`text-xs font-medium tracking-wider uppercase px-2.5 py-1 rounded-md shrink-0 ${
+            <span className={`text-label uppercase tracking-wider px-2.5 py-1 rounded-md shrink-0 font-body ${
               study.status === "Completed"
                 ? "bg-green-500/10 text-green-500"
                 : "bg-amber-500/10 text-amber-500"
@@ -244,22 +244,22 @@ export default function CaseStudy() {
 
           <div className="flex flex-wrap gap-2 mb-8">
             {study.stack.map((tech) => (
-              <span key={tech} className="px-3 py-1 text-sm rounded-lg bg-secondary text-secondary-foreground border border-border">
+              <span key={tech} className="px-3 py-1 text-sm rounded-lg bg-secondary text-secondary-foreground border border-border font-body">
                 {tech}
               </span>
             ))}
           </div>
 
           <Section title="Overview">
-            <p className="text-muted-foreground leading-relaxed">{study.overview}</p>
+            <p className="text-muted-foreground leading-relaxed font-body">{study.overview}</p>
           </Section>
 
           <Section title="Challenge">
-            <p className="text-muted-foreground leading-relaxed">{study.challenge}</p>
+            <p className="text-muted-foreground leading-relaxed font-body">{study.challenge}</p>
           </Section>
 
           <Section title="Solution">
-            <p className="text-muted-foreground leading-relaxed">{study.solution}</p>
+            <p className="text-muted-foreground leading-relaxed font-body">{study.solution}</p>
           </Section>
 
           <Section title="Implementation Highlights">

@@ -89,10 +89,10 @@ function ProjectCard({ project, showCaseStudy = true }: { project: Project; show
     <article className="group bg-card border border-border rounded-xl p-6 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium text-primary tracking-wider uppercase bg-primary/10 px-2.5 py-1 rounded-md">
+           <span className="text-label uppercase text-primary tracking-wider bg-primary/10 px-2.5 py-1 rounded-md font-body">
             {project.category}
           </span>
-          <span className={`text-xs font-medium tracking-wider uppercase px-2.5 py-1 rounded-md ${
+          <span className={`text-label uppercase tracking-wider px-2.5 py-1 rounded-md font-body ${
             project.status === "Completed"
               ? "bg-green-500/10 text-green-500"
               : "bg-amber-500/10 text-amber-500"
@@ -103,21 +103,21 @@ function ProjectCard({ project, showCaseStudy = true }: { project: Project; show
         <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
       </div>
 
-      <h3 className="text-xl font-heading font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
+      <h3 className="text-card-title font-heading mb-3 text-foreground group-hover:text-primary transition-colors">
         {project.title}
       </h3>
 
-      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+      <p className="text-sm text-muted-foreground mb-4 leading-relaxed font-body">
         {project.summary}
       </p>
 
-      <p className="text-sm font-medium text-primary mb-4">
+      <p className="text-sm font-medium text-primary mb-4 font-body">
         ↗ {project.outcome}
       </p>
 
       <div className="flex flex-wrap gap-1.5 mb-5">
         {project.stack.map((tech) => (
-          <span key={tech} className="text-xs px-2 py-0.5 rounded bg-secondary text-secondary-foreground">
+          <span key={tech} className="text-xs px-2 py-0.5 rounded bg-secondary text-secondary-foreground font-body">
             {tech}
           </span>
         ))}
@@ -143,11 +143,11 @@ export function Projects() {
     <section id="projects" className="section-padding bg-secondary/30">
       <div className="container-narrow">
         <div className="text-center mb-12">
-          <p className="text-sm font-medium text-primary tracking-widest uppercase mb-3">Portfolio</p>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
+          <p className="text-label uppercase text-primary mb-3 font-body">Portfolio</p>
+          <h2 className="text-section font-heading tracking-tight mb-4">
             Featured Projects
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto font-body">
             Real AI systems and engineering projects — each solving a specific challenge with practical, production-oriented thinking.
           </p>
         </div>
@@ -157,7 +157,7 @@ export function Projects() {
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+              className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 font-body ${
                 active === cat
                   ? "bg-primary text-primary-foreground shadow-md"
                   : "bg-surface-elevated text-muted-foreground hover:text-foreground border border-border"
@@ -181,10 +181,10 @@ export function Projects() {
         {moreFiltered.length > 0 && (
           <>
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-heading font-bold tracking-tight text-foreground">
+              <h3 className="text-section font-heading tracking-tight text-foreground">
                 Selected Work
               </h3>
-              <p className="text-sm text-muted-foreground mt-2">Additional projects across full-stack, mobile, and security engineering.</p>
+              <p className="text-sm text-muted-foreground mt-2 font-body">Additional projects across full-stack, mobile, and security engineering.</p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               {moreFiltered.map((project) => (
