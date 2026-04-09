@@ -14,11 +14,11 @@ export function Process() {
     <section id="process" className="section-padding bg-secondary/30">
       <div className="container-narrow">
         <div className="text-center mb-12">
-          <p className="text-sm font-medium text-primary tracking-widest uppercase mb-3">Methodology</p>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
+          <p className="text-label uppercase text-primary mb-3 font-body">Methodology</p>
+          <h2 className="text-section font-heading tracking-tight mb-4">
             How I Work
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto font-body">
             A structured, outcome-driven approach to every AI engagement.
           </p>
         </div>
@@ -30,8 +30,8 @@ export function Process() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <Icon className="h-6 w-6 text-primary mb-4" />
-              <h3 className="font-heading font-semibold text-foreground mb-2">{title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+              <h3 className="text-card-title font-heading mb-2">{title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed font-body">{desc}</p>
             </div>
           ))}
         </div>

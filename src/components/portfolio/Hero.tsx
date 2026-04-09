@@ -12,20 +12,20 @@ export function Hero() {
       <div className="absolute bottom-1/4 -left-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
 
       <div className="container-narrow relative z-10 text-center pt-20">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-surface-elevated text-sm text-muted-foreground mb-8 animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-surface-elevated text-label uppercase text-muted-foreground mb-8 animate-fade-in font-body">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           Available for projects & consulting
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+        <h1 className="text-hero font-heading tracking-tight leading-[1.05] mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
           <span className="text-foreground">Titus Kibet</span>
         </h1>
 
-        <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in font-light leading-relaxed" style={{ animationDelay: "0.2s" }}>
+        <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in font-body font-light leading-relaxed" style={{ animationDelay: "0.2s" }}>
           I build intelligent AI systems — from agents and automations to trained models and production deployments.
         </p>
 
-        <p className="text-base text-steel max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+        <p className="text-base text-steel max-w-2xl mx-auto mb-10 animate-fade-in font-body" style={{ animationDelay: "0.3s" }}>
           AI engineer building practical AI agents, local LLM systems, ML pipelines, and secure software for real-world business and research use cases.
         </p>
 

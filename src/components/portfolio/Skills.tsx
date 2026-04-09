@@ -30,8 +30,8 @@ export function Skills() {
     <section id="skills" className="section-padding">
       <div className="container-narrow">
         <div className="text-center mb-12">
-          <p className="text-sm font-medium text-primary tracking-widest uppercase mb-3">Expertise</p>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
+          <p className="text-label uppercase text-primary mb-3 font-body">Expertise</p>
+          <h2 className="text-section font-heading tracking-tight mb-4">
             Skills & Capabilities
           </h2>
         </div>
@@ -42,10 +42,10 @@ export function Skills() {
               key={cat.title}
               className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors duration-300"
             >
-              <h3 className="font-heading font-semibold text-foreground mb-4">{cat.title}</h3>
+              <h3 className="text-card-title font-heading mb-4">{cat.title}</h3>
               <ul className="space-y-2">
                 {cat.skills.map((skill) => (
-                  <li key={skill} className="text-sm text-muted-foreground flex items-center gap-2">
+                  <li key={skill} className="text-sm text-muted-foreground flex items-center gap-2 font-body">
                     <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
                     {skill}
                   </li>
