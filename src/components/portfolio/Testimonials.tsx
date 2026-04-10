@@ -16,7 +16,7 @@ const socialLinks = [
 
 export function Testimonials() {
   return (
-    <section className="section-padding">
+    <section id="certifications" className="section-padding">
       <div className="container-narrow">
         {/* Technologies */}
         <div className="mb-16">
@@ -28,7 +28,7 @@ export function Testimonials() {
           </div>
           <div className="flex flex-wrap justify-center gap-2">
             {technologies.map((tech) => (
-              <span key={tech} className="px-3 py-1.5 text-sm rounded-lg bg-secondary text-secondary-foreground border border-border font-body">
+              <span key={tech} className="skill-badge-hover px-3 py-1.5 text-sm rounded-lg bg-secondary text-secondary-foreground border border-border font-body">
                 {tech}
               </span>
             ))}
@@ -44,7 +44,7 @@ export function Testimonials() {
             <a
               key={label}
               href={href}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all duration-200 text-sm font-body">
+              className="icon-hover flex items-center gap-2 px-4 py-2 rounded-lg border border-border text-muted-foreground hover:border-primary/30 transition-all duration-200 text-sm font-body">
               <Icon className="h-4 w-4" /> {label}
             </a>
           ))}
