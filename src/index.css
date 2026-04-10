@@ -98,3 +98,53 @@
     @apply max-w-5xl mx-auto px-6 md:px-8;
   }
 }
+
+/* Micro-animation: nav link underline */
+.nav-link-animated {
+  position: relative;
+}
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: hsl(var(--primary));
+  transition: width 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link-animated:hover::after {
+  width: 100%;
+}
+
+/* Micro-animation: social/contact icon hover */
+.icon-hover {
+  transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.icon-hover:hover {
+  color: hsl(var(--primary));
+  transform: scale(1.12);
+}
+
+/* Micro-animation: skill badge hover */
+.skill-badge-hover {
+  transition: background 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.skill-badge-hover:hover {
+  background: rgba(0, 212, 200, 0.12);
+  border-color: rgba(0, 212, 200, 0.3);
+  transform: scale(1.03);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav-link-animated::after,
+  .icon-hover,
+  .skill-badge-hover,
+  .nav-link-animated,
+  [class*="transition"],
+  [class*="animate-"] {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

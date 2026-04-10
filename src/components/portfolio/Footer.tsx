@@ -6,9 +6,9 @@ export function Footer() {
           © {new Date().getFullYear()} Titus Kibet. Built with precision.
         </p>
         <div className="flex items-center gap-6 text-sm text-muted-foreground font-body">
-          <a href="#" className="hover:text-foreground transition-colors">GitHub</a>
-          <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
-          <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
+          <a href="#" className="nav-link-animated icon-hover hover:text-foreground">GitHub</a>
+          <a href="#" className="nav-link-animated icon-hover hover:text-foreground">LinkedIn</a>
+          <a href="#contact" className="nav-link-animated icon-hover hover:text-foreground">Contact</a>
         </div>
       </div>
     </footer>
