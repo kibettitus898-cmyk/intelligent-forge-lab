@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useReveal, reveal } from "@/hooks/useReveal";
 
 const categories = ["All", "ML/AI", "Agents", "Full-Stack", "Security", "Mobile"];
 
@@ -84,11 +85,13 @@ const moreProjects: Project[] = [
   },
 ];
 
-function ProjectCard({ project, showCaseStudy = true }: { project: Project; showCaseStudy?: boolean }) {
+function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true }: { project: Project; showCaseStudy?: boolean; index?: number; visible?: boolean }) {
+  const s = reveal.card(visible, index * 80);
   return (
     <article
-      className="group relative overflow-hidden rounded-2xl p-7 transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01]"
+      className={`group relative overflow-hidden rounded-2xl p-7 transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01] ${s.className}`}
       style={{
+        ...s.style,
         background: 'rgba(255, 255, 255, 0.04)',
         backdropFilter: 'blur(16px) saturate(150%)',
         WebkitBackdropFilter: 'blur(16px) saturate(150%)',
@@ -104,7 +107,6 @@ function ProjectCard({ project, showCaseStudy = true }: { project: Project; show
         e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.07)';
       }}
     >
-      {/* Teal accent line — visible on hover */}
       <span className="absolute top-4 left-0 w-[3px] h-[40px] bg-primary rounded-r opacity-0 group-hover:opacity-100 transition-opacity duration-[280ms]" />
 
       <div className="flex items-start justify-between mb-4">
@@ -156,10 +158,15 @@ export function Projects() {
   const featuredFiltered = filtered.filter((p) => featuredProjects.some((fp) => fp.id === p.id));
   const moreFiltered = filtered.filter((p) => moreProjects.some((mp) => mp.id === p.id));
 
+  const heading = useReveal();
+  const featuredGrid = useReveal();
+  const moreHeading = useReveal();
+  const moreGrid = useReveal();
+
   return (
     <section id="projects" className="section-padding bg-secondary/30">
       <div className="container-narrow">
-        <div className="text-center mb-12">
+        <div ref={heading.ref} className={`text-center mb-12 ${reveal.heading(heading.visible)}`}>
           <p className="text-label uppercase text-primary mb-3 font-body">Portfolio</p>
           <h2 className="text-section font-heading tracking-tight mb-4">
             Featured Projects
@@ -185,27 +192,25 @@ export function Projects() {
           ))}
         </div>
 
-        {/* Featured */}
         {featuredFiltered.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            {featuredFiltered.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+          <div ref={featuredGrid.ref} className="grid md:grid-cols-2 gap-6 mb-12">
+            {featuredFiltered.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} visible={featuredGrid.visible} />
             ))}
           </div>
         )}
 
-        {/* Selected Work */}
         {moreFiltered.length > 0 && (
           <>
-            <div className="text-center mb-8">
+            <div ref={moreHeading.ref} className={`text-center mb-8 ${reveal.heading(moreHeading.visible)}`}>
               <h3 className="text-section font-heading tracking-tight text-foreground">
                 Selected Work
               </h3>
               <p className="text-sm text-muted-foreground mt-2 font-body">Additional projects across full-stack, mobile, and security engineering.</p>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              {moreFiltered.map((project) => (
-                <ProjectCard key={project.id} project={project} showCaseStudy={true} />
+            <div ref={moreGrid.ref} className="grid md:grid-cols-2 gap-6">
+              {moreFiltered.map((project, i) => (
+                <ProjectCard key={project.id} project={project} showCaseStudy={true} index={i} visible={moreGrid.visible} />
               ))}
             </div>
           </>
