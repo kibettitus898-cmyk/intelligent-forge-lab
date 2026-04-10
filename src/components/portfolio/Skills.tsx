@@ -1,3 +1,5 @@
+import { useReveal, reveal } from "@/hooks/useReveal";
+
 const skillCategories = [
   {
     title: "AI Agents & LLM Systems",
@@ -26,33 +28,51 @@ const skillCategories = [
 ];
 
 export function Skills() {
+  const heading = useReveal();
+  const grid = useReveal();
+
+  // Track a running badge index for stagger across all categories
+  let badgeIndex = 0;
+
   return (
     <section id="skills" className="section-padding">
       <div className="container-narrow">
-        <div className="text-center mb-12">
+        <div ref={heading.ref} className={`text-center mb-12 ${reveal.heading(heading.visible)}`}>
           <p className="text-label uppercase text-primary mb-3 font-body">Expertise</p>
           <h2 className="text-section font-heading tracking-tight mb-4">
             Skills & Capabilities
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((cat) => (
-            <div
-              key={cat.title}
-              className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors duration-300"
-            >
-              <h3 className="text-card-title font-heading mb-4">{cat.title}</h3>
-              <ul className="space-y-2">
-                {cat.skills.map((skill) => (
-                  <li key={skill} className="skill-badge-hover text-sm text-muted-foreground flex items-center gap-2 font-body px-2 py-0.5 rounded-md border border-transparent">
-                    <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div ref={grid.ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillCategories.map((cat, catIdx) => {
+            const catCard = reveal.scaleIn(grid.visible, catIdx * 100);
+            return (
+              <div
+                key={cat.title}
+                className={`p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors duration-300 ${catCard.className}`}
+                style={catCard.style}
+              >
+                <h3 className="text-card-title font-heading mb-4">{cat.title}</h3>
+                <ul className="space-y-2">
+                  {cat.skills.map((skill) => {
+                    const b = reveal.badge(grid.visible, badgeIndex * 40);
+                    badgeIndex++;
+                    return (
+                      <li
+                        key={skill}
+                        className={`skill-badge-hover text-sm text-muted-foreground flex items-center gap-2 font-body px-2 py-0.5 rounded-md border border-transparent ${b.className}`}
+                        style={b.style}
+                      >
+                        <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
+                        {skill}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import { Bot, Brain, Cloud, Code, Lock, Rocket, Smartphone, Shield } from "lucide-react";
+import { useReveal, reveal } from "@/hooks/useReveal";
 
 const capabilities = [
   { icon: Bot, label: "AI Agents & Workflow Automation" },
@@ -12,40 +13,54 @@ const capabilities = [
 ];
 
 export function About() {
+  const heading = useReveal();
+  const textBlock = useReveal();
+  const capGrid = useReveal();
+
   return (
     <section id="about" className="section-padding">
       <div className="container-narrow">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
-            <p className="text-label uppercase text-primary mb-3 font-body">About</p>
-            <h2 className="text-section font-heading tracking-tight mb-6">
-              Engineering AI that solves real problems
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed font-body">
-              <p>
-                I'm Titus Kibet — an AI engineer and systems builder with hands-on experience across AI agents, machine learning pipelines, full-stack product development, cloud deployment, and security-focused engineering.
-              </p>
-              <p>
-                My work spans the full AI lifecycle: from data ingestion and model training to agent orchestration, API design, and production deployment. I build systems that are practical, reproducible, and designed for real-world use — not just demos.
-              </p>
-              <p>
-                Whether it's a locally-hosted coding agent, a match prediction ML pipeline, a tenant management platform, or an RL-powered security research tool — I architect and deliver solutions grounded in solid engineering and clear thinking.
-              </p>
+            <div ref={heading.ref} className={reveal.heading(heading.visible)}>
+              <p className="text-label uppercase text-primary mb-3 font-body">About</p>
+              <h2 className="text-section font-heading tracking-tight mb-6">
+                Engineering AI that solves real problems
+              </h2>
+            </div>
+            <div ref={textBlock.ref} className={reveal.slideRight(textBlock.visible)}>
+              <div className="space-y-4 text-muted-foreground leading-relaxed font-body">
+                <p>
+                  I'm Titus Kibet — an AI engineer and systems builder with hands-on experience across AI agents, machine learning pipelines, full-stack product development, cloud deployment, and security-focused engineering.
+                </p>
+                <p>
+                  My work spans the full AI lifecycle: from data ingestion and model training to agent orchestration, API design, and production deployment. I build systems that are practical, reproducible, and designed for real-world use — not just demos.
+                </p>
+                <p>
+                  Whether it's a locally-hosted coding agent, a match prediction ML pipeline, a tenant management platform, or an RL-powered security research tool — I architect and deliver solutions grounded in solid engineering and clear thinking.
+                </p>
+              </div>
             </div>
           </div>
 
           <div>
-            <p className="text-label uppercase text-primary mb-6 font-body">What I Do</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {capabilities.map(({ icon: Icon, label }) => (
-                <div
-                  key={label}
-                  className="flex items-start gap-3 p-4 rounded-lg bg-surface-elevated border border-border hover:border-primary/30 transition-colors duration-300"
-                >
-                  <Icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                  <span className="text-sm font-medium text-foreground font-body">{label}</span>
-                </div>
-              ))}
+            <div ref={capGrid.ref}>
+              <p className="text-label uppercase text-primary mb-6 font-body">What I Do</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {capabilities.map(({ icon: Icon, label }, i) => {
+                  const s = reveal.scaleIn(capGrid.visible, i * 80);
+                  return (
+                    <div
+                      key={label}
+                      className={`flex items-start gap-3 p-4 rounded-lg bg-surface-elevated border border-border hover:border-primary/30 transition-colors duration-300 ${s.className}`}
+                      style={s.style}
+                    >
+                      <Icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-sm font-medium text-foreground font-body">{label}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
