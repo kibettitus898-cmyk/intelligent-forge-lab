@@ -134,7 +134,7 @@ function ProjectCard({ project, showCaseStudy = true }: { project: Project; show
 
       <div className="flex flex-wrap gap-1.5 mb-5">
         {project.stack.map((tech) => (
-          <span key={tech} className="text-xs px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.08] text-muted-foreground font-body">
+          <span key={tech} className="skill-badge-hover text-xs px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.08] text-muted-foreground font-body">
             {tech}
           </span>
         ))}

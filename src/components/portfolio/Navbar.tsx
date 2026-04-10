@@ -38,7 +38,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 font-body"
+              className="nav-link-animated text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 font-body"
             >
               {link.label}
             </a>
@@ -66,7 +66,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors font-body"
+                className="nav-link-animated text-sm font-medium text-muted-foreground hover:text-foreground transition-colors font-body"
               >
                 {link.label}
               </a>

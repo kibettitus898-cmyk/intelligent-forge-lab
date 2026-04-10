@@ -45,7 +45,7 @@ export function Skills() {
               <h3 className="text-card-title font-heading mb-4">{cat.title}</h3>
               <ul className="space-y-2">
                 {cat.skills.map((skill) => (
-                  <li key={skill} className="text-sm text-muted-foreground flex items-center gap-2 font-body">
+                  <li key={skill} className="skill-badge-hover text-sm text-muted-foreground flex items-center gap-2 font-body px-2 py-0.5 rounded-md border border-transparent">
                     <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
                     {skill}
                   </li>
