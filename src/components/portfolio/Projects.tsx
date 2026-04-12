@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useReveal, reveal } from "@/hooks/useReveal";
 
@@ -14,7 +14,16 @@ export interface Project {
   outcome: string;
   category: string;
   status: "Completed" | "Ongoing";
+  github?: string | null;
+  demo?: string | null;
+  video?: string | null;
 }
+
+const GitHubIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+  </svg>
+);
 
 const featuredProjects: Project[] = [
   {
@@ -25,6 +34,9 @@ const featuredProjects: Project[] = [
     outcome: "62% precision, 58% F1, fully automated weekly retraining with safety gates",
     category: "ML/AI",
     status: "Completed",
+    github: null,
+    demo: "https://huggingface.co/spaces/shiphrahb/epl-match-predictor",
+    video: null,
   },
   {
     id: "ai-coding-agent",
@@ -34,6 +46,9 @@ const featuredProjects: Project[] = [
     outcome: "Privacy-preserving local AI agent with tool use, memory, and safety boundaries",
     category: "Agents",
     status: "Ongoing",
+    github: null,
+    demo: null,
+    video: null,
   },
   {
     id: "api-key-agent",
@@ -43,6 +58,9 @@ const featuredProjects: Project[] = [
     outcome: "Automated secret detection with AI triage and responsible disclosure workflows",
     category: "Security",
     status: "Ongoing",
+    github: null,
+    demo: null,
+    video: null,
   },
 ];
 
@@ -55,6 +73,7 @@ const moreProjects: Project[] = [
     outcome: "Auditable relational schema ready for low-cost deployment and AI extensions",
     category: "Full-Stack",
     status: "Ongoing",
+    github: null, demo: null, video: null,
   },
   {
     id: "rl-red-team",
@@ -64,6 +83,7 @@ const moreProjects: Project[] = [
     outcome: "Autonomous attack-policy learning in sandboxed simulated environments",
     category: "Security",
     status: "Ongoing",
+    github: null, demo: null, video: null,
   },
   {
     id: "student-meetup",
@@ -73,6 +93,7 @@ const moreProjects: Project[] = [
     outcome: "Containerized service-oriented app with tested scalability and full documentation",
     category: "Full-Stack",
     status: "Completed",
+    github: null, demo: null, video: null,
   },
   {
     id: "curlcare",
@@ -82,6 +103,7 @@ const moreProjects: Project[] = [
     outcome: "Production-ready mobile app with AI integration and polished UI/UX",
     category: "Mobile",
     status: "Completed",
+    github: null, demo: null, video: null,
   },
 ];
 
@@ -142,11 +164,49 @@ function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true 
         ))}
       </div>
 
-      {showCaseStudy && (
-        <Button size="sm" variant="outline" asChild>
-          <Link to={`/case-study/${project.id}`}>View Case Study</Link>
-        </Button>
-      )}
+      <div className="flex flex-wrap gap-2 sm:flex-row flex-col">
+        {project.github !== undefined && (
+          <a
+            href={project.github || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[0.8125rem] font-medium rounded-lg bg-white/[0.04] border border-white/[0.12] text-foreground hover:border-primary/40 hover:text-primary transition-all duration-200 font-body"
+            onClick={!project.github ? (e) => e.preventDefault() : undefined}
+          >
+            <GitHubIcon />
+            {project.github ? "View Code" : "GitHub — Link on Request"}
+          </a>
+        )}
+        {project.demo !== undefined && (
+          <a
+            href={project.demo || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[0.8125rem] font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-body"
+            onClick={!project.demo ? (e) => e.preventDefault() : undefined}
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            {project.demo ? "Live Demo" : "Demo — Link on Request"}
+          </a>
+        )}
+        {project.video !== undefined && (
+          <a
+            href={project.video || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[0.8125rem] font-medium rounded-lg bg-transparent border border-primary/40 text-primary hover:bg-primary/10 transition-all duration-200 font-body"
+            onClick={!project.video ? (e) => e.preventDefault() : undefined}
+          >
+            <Play className="w-3.5 h-3.5" />
+            {project.video ? "Watch Demo" : "Video — Link on Request"}
+          </a>
+        )}
+        {showCaseStudy && (
+          <Button size="sm" variant="outline" asChild className="h-auto px-3.5 py-1.5 text-[0.8125rem]">
+            <Link to={`/case-study/${project.id}`}>View Case Study</Link>
+          </Button>
+        )}
+      </div>
     </article>
   );
 }
