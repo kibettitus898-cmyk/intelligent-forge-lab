@@ -38,6 +38,7 @@
     --steel-light: 220 12% 75%;
   }
 
+  .dark {
     --background: 220 18% 7%;
     --foreground: 220 15% 90%;
     --card: 220 18% 10%;
