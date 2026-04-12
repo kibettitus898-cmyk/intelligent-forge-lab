@@ -4,7 +4,14 @@ import { ArrowUpRight, ExternalLink, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useReveal, reveal } from "@/hooks/useReveal";
 
-const categories = ["All", "ML/AI", "Agents", "Full-Stack", "Security", "Mobile"];
+const filterTabs = [
+  { label: "All", ids: null },
+  { label: "AI / ML", ids: ["epl-predictor", "ai-coding-agent"] },
+  { label: "Security", ids: ["api-key-agent", "rl-red-team"] },
+  { label: "Full-Stack", ids: ["tenantflow", "student-meetup"] },
+  { label: "Mobile & AI", ids: ["curlcare"] },
+  { label: "Research", ids: ["rl-red-team", "api-key-agent"] },
+];
 
 export interface Project {
   id: string;
