@@ -2,6 +2,7 @@ import { Navbar } from "@/components/portfolio/Navbar";
 import { ScrollProgress } from "@/components/portfolio/ScrollProgress";
 import { BackToTop } from "@/components/portfolio/BackToTop";
 import { Hero } from "@/components/portfolio/Hero";
+import { Metrics } from "@/components/portfolio/Metrics";
 import { About } from "@/components/portfolio/About";
 import { Projects } from "@/components/portfolio/Projects";
 import { Skills } from "@/components/portfolio/Skills";
