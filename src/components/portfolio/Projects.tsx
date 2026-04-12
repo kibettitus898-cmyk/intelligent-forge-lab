@@ -73,6 +73,7 @@ const moreProjects: Project[] = [
     outcome: "Auditable relational schema ready for low-cost deployment and AI extensions",
     category: "Full-Stack",
     status: "Ongoing",
+    github: null, demo: null, video: null,
   },
   {
     id: "rl-red-team",
@@ -82,6 +83,7 @@ const moreProjects: Project[] = [
     outcome: "Autonomous attack-policy learning in sandboxed simulated environments",
     category: "Security",
     status: "Ongoing",
+    github: null, demo: null, video: null,
   },
   {
     id: "student-meetup",
@@ -91,6 +93,7 @@ const moreProjects: Project[] = [
     outcome: "Containerized service-oriented app with tested scalability and full documentation",
     category: "Full-Stack",
     status: "Completed",
+    github: null, demo: null, video: null,
   },
   {
     id: "curlcare",
@@ -100,6 +103,7 @@ const moreProjects: Project[] = [
     outcome: "Production-ready mobile app with AI integration and polished UI/UX",
     category: "Mobile",
     status: "Completed",
+    github: null, demo: null, video: null,
   },
 ];
 
