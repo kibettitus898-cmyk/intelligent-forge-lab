@@ -114,13 +114,16 @@ const moreProjects: Project[] = [
   },
 ];
 
-function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true }: { project: Project; showCaseStudy?: boolean; index?: number; visible?: boolean }) {
+function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true, dimmed = false }: { project: Project; showCaseStudy?: boolean; index?: number; visible?: boolean; dimmed?: boolean }) {
   const s = reveal.card(visible, index * 80);
   return (
     <article
-      className={`group relative overflow-hidden rounded-2xl p-7 transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01] ${s.className}`}
+      className={`group relative overflow-hidden rounded-2xl p-7 transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01] ${s.className}`}
       style={{
         ...s.style,
+        opacity: dimmed ? 0.15 : undefined,
+        transform: dimmed ? 'scale(0.97)' : undefined,
+        pointerEvents: dimmed ? 'none' : undefined,
         background: 'rgba(255, 255, 255, 0.04)',
         backdropFilter: 'blur(16px) saturate(150%)',
         WebkitBackdropFilter: 'blur(16px) saturate(150%)',
@@ -221,14 +224,11 @@ function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true 
 export function Projects() {
   const [active, setActive] = useState("All");
   const allProjects = [...featuredProjects, ...moreProjects];
-  const filtered = active === "All" ? allProjects : allProjects.filter((p) => p.category === active);
-  const featuredFiltered = filtered.filter((p) => featuredProjects.some((fp) => fp.id === p.id));
-  const moreFiltered = filtered.filter((p) => moreProjects.some((mp) => mp.id === p.id));
+  const activeTab = filterTabs.find((t) => t.label === active)!;
+  const isMatch = (p: Project) => !activeTab.ids || activeTab.ids.includes(p.id);
 
   const heading = useReveal();
-  const featuredGrid = useReveal();
-  const moreHeading = useReveal();
-  const moreGrid = useReveal();
+  const grid = useReveal();
 
   return (
     <section id="projects" className="section-padding bg-secondary/30">
@@ -243,45 +243,33 @@ export function Projects() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {categories.map((cat) => (
+        <div className="flex gap-2 mb-10 overflow-x-auto pb-2 scrollbar-hide justify-center md:flex-wrap">
+          {filterTabs.map((tab) => (
             <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 font-body ${
-                active === cat
+              key={tab.label}
+              onClick={() => setActive(tab.label)}
+              className={`shrink-0 px-3.5 py-1.5 text-[0.8125rem] font-medium rounded-full transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] font-body ${
+                active === tab.label
                   ? "bg-primary text-primary-foreground shadow-md"
-                  : "bg-surface-elevated text-muted-foreground hover:text-foreground border border-border"
+                  : "bg-white/[0.05] text-muted-foreground hover:text-foreground border border-white/[0.08]"
               }`}
             >
-              {cat}
+              {tab.label}
             </button>
           ))}
         </div>
 
-        {featuredFiltered.length > 0 && (
-          <div ref={featuredGrid.ref} className="grid md:grid-cols-2 gap-6 mb-12">
-            {featuredFiltered.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} visible={featuredGrid.visible} />
-            ))}
-          </div>
-        )}
-
-        {moreFiltered.length > 0 && (
-          <>
-            <div ref={moreHeading.ref} className={`text-center mb-8 ${reveal.heading(moreHeading.visible)}`}>
-              <h3 className="text-section font-heading tracking-tight text-foreground">
-                Selected Work
-              </h3>
-              <p className="text-sm text-muted-foreground mt-2 font-body">Additional projects across full-stack, mobile, and security engineering.</p>
-            </div>
-            <div ref={moreGrid.ref} className="grid md:grid-cols-2 gap-6">
-              {moreFiltered.map((project, i) => (
-                <ProjectCard key={project.id} project={project} showCaseStudy={true} index={i} visible={moreGrid.visible} />
-              ))}
-            </div>
-          </>
-        )}
+        <div ref={grid.ref} className="grid md:grid-cols-2 gap-6">
+          {allProjects.map((project, i) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={i}
+              visible={grid.visible}
+              dimmed={!isMatch(project)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
