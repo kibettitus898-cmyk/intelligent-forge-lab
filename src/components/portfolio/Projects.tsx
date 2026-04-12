@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useReveal, reveal } from "@/hooks/useReveal";
 
