@@ -164,11 +164,49 @@ function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true 
         ))}
       </div>
 
-      {showCaseStudy && (
-        <Button size="sm" variant="outline" asChild>
-          <Link to={`/case-study/${project.id}`}>View Case Study</Link>
-        </Button>
-      )}
+      <div className="flex flex-wrap gap-2 sm:flex-row flex-col">
+        {project.github !== undefined && (
+          <a
+            href={project.github || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[0.8125rem] font-medium rounded-lg bg-white/[0.04] border border-white/[0.12] text-foreground hover:border-primary/40 hover:text-primary transition-all duration-200 font-body"
+            onClick={!project.github ? (e) => e.preventDefault() : undefined}
+          >
+            <GitHubIcon />
+            {project.github ? "View Code" : "GitHub — Link on Request"}
+          </a>
+        )}
+        {project.demo !== undefined && (
+          <a
+            href={project.demo || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[0.8125rem] font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-body"
+            onClick={!project.demo ? (e) => e.preventDefault() : undefined}
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            {project.demo ? "Live Demo" : "Demo — Link on Request"}
+          </a>
+        )}
+        {project.video !== undefined && (
+          <a
+            href={project.video || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[0.8125rem] font-medium rounded-lg bg-transparent border border-primary/40 text-primary hover:bg-primary/10 transition-all duration-200 font-body"
+            onClick={!project.video ? (e) => e.preventDefault() : undefined}
+          >
+            <Play className="w-3.5 h-3.5" />
+            {project.video ? "Watch Demo" : "Video — Link on Request"}
+          </a>
+        )}
+        {showCaseStudy && (
+          <Button size="sm" variant="outline" asChild className="h-auto px-3.5 py-1.5 text-[0.8125rem]">
+            <Link to={`/case-study/${project.id}`}>View Case Study</Link>
+          </Button>
+        )}
+      </div>
     </article>
   );
 }
