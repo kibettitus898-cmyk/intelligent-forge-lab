@@ -36,7 +36,14 @@
     --surface-elevated: 0 0% 100%;
     --steel: 220 10% 55%;
     --steel-light: 220 12% 75%;
-  }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
   .dark {
     --background: 220 18% 7%;
