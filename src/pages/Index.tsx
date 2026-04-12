@@ -17,6 +17,7 @@ const Index = () => {
       <ScrollProgress />
       <Navbar />
       <Hero />
+      <Metrics />
       <About />
       <Projects />
       <Skills />
