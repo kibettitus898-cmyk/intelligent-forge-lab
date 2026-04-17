@@ -12,31 +12,31 @@ const certifications: Certification[] = [
   {
     title: "AWS Certified Cloud Practitioner",
     issuer: "Amazon Web Services",
-    logo: "https://cdn.simpleicons.org/amazonaws",
+    logo: "https://cdn.simpleicons.org/amazonwebservices/FF9900",
     accent: "#FF9900",
   },
   {
     title: "Oracle Cloud Infrastructure 2025 Foundations Associate",
     issuer: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle",
+    logo: "https://cdn.simpleicons.org/oracle/F80000",
     accent: "#F80000",
   },
   {
     title: "Oracle Cloud Infrastructure 2025 DevOps Professional",
     issuer: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle",
+    logo: "https://cdn.simpleicons.org/oracle/F80000",
     accent: "#F80000",
   },
   {
     title: "Oracle Cloud Infrastructure 2025 Generative AI Professional",
     issuer: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle",
+    logo: "https://cdn.simpleicons.org/oracle/F80000",
     accent: "#F80000",
   },
   {
     title: "Oracle Cloud Infrastructure 2025 Data Science Professional",
     issuer: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle",
+    logo: "https://cdn.simpleicons.org/oracle/F80000",
     accent: "#F80000",
   },
 ];
@@ -75,7 +75,7 @@ export function Certifications() {
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-start gap-4 mb-4">
                     <div
-                      className="w-8 h-8 shrink-0 rounded-md bg-white/95 flex items-center justify-center p-1"
+                      className="w-10 h-10 shrink-0 rounded-md bg-white flex items-center justify-center p-1.5 ring-1 ring-black/5"
                       aria-hidden="true"
                     >
                       <img
@@ -84,6 +84,7 @@ export function Certifications() {
                         width={32}
                         height={32}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain"
                       />
                     </div>

@@ -158,6 +158,7 @@ function GrainOverlay() {
 export function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div id="main-content" className="sr-only" aria-hidden="true" />
       {/* Network mesh canvas */}
       <NetworkMesh />
 
