@@ -118,7 +118,7 @@ function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true,
   const s = reveal.card(visible, index * 80);
   return (
     <article
-      className={`group relative overflow-hidden rounded-2xl p-7 transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01] ${s.className}`}
+      className={`group relative overflow-hidden rounded-2xl p-5 sm:p-7 transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01] ${s.className}`}
       style={{
         ...s.style,
         opacity: dimmed ? 0.15 : undefined,
@@ -174,7 +174,7 @@ function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true,
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2 sm:flex-row flex-col">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-2">
         {project.github !== undefined && (
           <a
             href={project.github || "#"}
