@@ -55,7 +55,7 @@ export function Metrics() {
       <div className="container-narrow">
         <div
           ref={section.ref}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-1 min-[540px]:grid-cols-2 lg:grid-cols-4 gap-5"
         >
           {metrics.map((m, i) => (
             <MetricCard key={m.label} {...m} index={i} visible={section.visible} />
