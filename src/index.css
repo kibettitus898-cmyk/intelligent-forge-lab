@@ -108,9 +108,11 @@
   .container-narrow {
     @apply max-w-5xl mx-auto px-5 sm:px-6 md:px-8;
   }
-  /* Hero heading: never overflow on small screens */
-  .text-hero {
-    font-size: clamp(2.25rem, 8vw, 5rem);
+  /* Hero heading: never overflow on small screens (overrides Tailwind text-hero on mobile) */
+  @media (max-width: 480px) {
+    .text-hero {
+      font-size: clamp(2.25rem, 9vw, 3rem) !important;
+    }
   }
 }
 
