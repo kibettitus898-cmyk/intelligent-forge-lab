@@ -110,7 +110,7 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-foreground"
+              className="p-2 text-foreground min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -141,11 +141,13 @@ export function Navbar() {
 
       {/* Mobile bottom tab bar */}
       <div
-        className="md:hidden fixed bottom-0 left-0 right-0 z-[200] flex items-center justify-around py-2"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-[200] flex items-center justify-around border-t border-white/[0.07]"
         style={{
           background: "rgba(15, 17, 23, 0.95)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
+          paddingTop: "0.5rem",
+          paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom))",
         }}
       >
         {mobileTabLinks.map(({ label, href, icon: Icon }) => {
@@ -154,12 +156,13 @@ export function Navbar() {
             <button
               key={href}
               onClick={() => scrollTo(href)}
-              className={`flex flex-col items-center gap-0.5 px-3 py-1 text-xs font-body transition-colors duration-200 ${
+              className={`flex flex-col items-center justify-center gap-0.5 px-3 py-1.5 min-w-[44px] min-h-[44px] text-[11px] font-body transition-colors duration-200 ${
                 isActive ? "text-primary" : "text-muted-foreground"
               }`}
+              aria-label={label}
             >
               <Icon className="h-5 w-5" />
-              {label}
+              <span>{label}</span>
             </button>
           );
         })}

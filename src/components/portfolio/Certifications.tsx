@@ -56,7 +56,7 @@ export function Certifications() {
           </p>
         </div>
 
-        <div ref={grid.ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={grid.ref} className="grid grid-cols-1 min-[540px]:grid-cols-2 lg:grid-cols-3 gap-6">
           {certifications.map((cert, idx) => {
             const card = reveal.scaleIn(grid.visible, idx * 100);
             return (

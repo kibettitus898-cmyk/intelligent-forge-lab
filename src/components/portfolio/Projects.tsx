@@ -118,7 +118,7 @@ function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true,
   const s = reveal.card(visible, index * 80);
   return (
     <article
-      className={`group relative overflow-hidden rounded-2xl p-7 transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01] ${s.className}`}
+      className={`group relative overflow-hidden rounded-2xl p-5 sm:p-7 transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.01] ${s.className}`}
       style={{
         ...s.style,
         opacity: dimmed ? 0.15 : undefined,
@@ -174,7 +174,7 @@ function ProjectCard({ project, showCaseStudy = true, index = 0, visible = true,
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2 sm:flex-row flex-col">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-2">
         {project.github !== undefined && (
           <a
             href={project.github || "#"}
@@ -243,12 +243,12 @@ export function Projects() {
           </p>
         </div>
 
-        <div className="flex gap-2 mb-10 overflow-x-auto pb-2 scrollbar-hide justify-center md:flex-wrap">
+        <div className="flex gap-2 mb-10 overflow-x-auto pb-2 scrollbar-hide flex-nowrap md:justify-center md:flex-wrap -mx-5 px-5 sm:-mx-6 sm:px-6 md:mx-0 md:px-0">
           {filterTabs.map((tab) => (
             <button
               key={tab.label}
               onClick={() => setActive(tab.label)}
-              className={`shrink-0 px-3.5 py-1.5 text-[0.8125rem] font-medium rounded-full transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] font-body ${
+              className={`shrink-0 whitespace-nowrap px-4 min-h-[44px] flex items-center text-[0.8125rem] font-medium rounded-full transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] font-body ${
                 active === tab.label
                   ? "bg-primary text-primary-foreground shadow-md"
                   : "bg-white/[0.05] text-muted-foreground hover:text-foreground border border-white/[0.08]"
@@ -259,7 +259,7 @@ export function Projects() {
           ))}
         </div>
 
-        <div ref={grid.ref} className="grid md:grid-cols-2 gap-6">
+        <div ref={grid.ref} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {allProjects.map((project, i) => (
             <ProjectCard
               key={project.id}
