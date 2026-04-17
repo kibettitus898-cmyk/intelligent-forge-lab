@@ -2,17 +2,37 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Titus Kibet — AI Engineer Portfolio</title>
-    <meta name="description" content="Titus Kibet — AI Engineer specializing in AI agents, LLM systems, model training, secure automation, and production-ready AI delivery." />
+
+    <!-- Font performance -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+
+    <!-- Primary -->
+    <title>Titus Kibet — AI Engineer & Systems Builder</title>
+    <meta name="description" content="Portfolio of Titus Kibet — AI engineer specializing in AI agents, machine learning pipelines, automation, and secure cloud deployments." />
     <meta name="author" content="Titus Kibet" />
-    <meta property="og:title" content="Titus Kibet — AI Engineer Portfolio" />
-    <meta property="og:description" content="I build intelligent AI systems — from agents and automations to trained models and production deployments." />
+    <link rel="canonical" href="/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Titus Kibet — AI Engineer & Systems Builder" />
+    <meta property="og:description" content="AI engineer specializing in AI agents, ML systems, local LLMs, and production-ready deployments." />
     <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Titus Kibet — AI Engineer" />
+    <meta name="twitter:description" content="AI agents, ML pipelines, secure automation, and cloud deployments." />
   </head>
   <body>
+    <!-- Skip to main content (visible on focus only) -->
+    <a
+      href="#main-content"
+      style="position:absolute;left:-9999px;top:0;z-index:9999;background:#0f1117;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;"
+      onfocus="this.style.left='12px';this.style.top='12px';"
+      onblur="this.style.left='-9999px';this.style.top='0';"
+    >Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -6,11 +6,13 @@ const items = [
     href: "https://github.com/shiphrahblessing2-byte",
     icon: (
       <img
-        src="https://cdn.simpleicons.org/github"
+        src="https://cdn.simpleicons.org/github/ffffff"
         alt=""
         width={20}
         height={20}
-        className="w-5 h-5 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
+        loading="lazy"
+        decoding="async"
+        className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity duration-200"
       />
     ),
     external: true,
@@ -20,11 +22,13 @@ const items = [
     href: "https://linkedin.com/in/tituskibet",
     icon: (
       <img
-        src="https://cdn.simpleicons.org/linkedin"
+        src="https://cdn.simpleicons.org/linkedin/0A66C2"
         alt=""
         width={20}
         height={20}
-        className="w-5 h-5 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
+        loading="lazy"
+        decoding="async"
+        className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
       />
     ),
     external: true,

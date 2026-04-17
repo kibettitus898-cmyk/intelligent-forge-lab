@@ -25,7 +25,8 @@ const BrandImg = ({ src, alt }: { src: string; alt: string }) => (
     width={20}
     height={20}
     loading="lazy"
-    className="w-5 h-5 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
+    decoding="async"
+    className="w-5 h-5 transition-transform duration-200 group-hover:scale-110"
   />
 );
 
@@ -42,7 +43,7 @@ const channels: ContactChannel[] = [
     cta: "Connect on LinkedIn",
     href: "https://linkedin.com/in/tituskibet",
     display: "linkedin.com/in/tituskibet",
-    icon: <BrandImg src="https://cdn.simpleicons.org/linkedin" alt="LinkedIn" />,
+    icon: <BrandImg src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" />,
     external: true,
   },
   {
@@ -50,7 +51,7 @@ const channels: ContactChannel[] = [
     cta: "Message on WhatsApp",
     href: "https://wa.me/254XXXXXXXXX",
     display: "wa.me/254XXXXXXXXX",
-    icon: <BrandImg src="https://cdn.simpleicons.org/whatsapp" alt="WhatsApp" />,
+    icon: <BrandImg src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" />,
     external: true,
   },
   {
@@ -58,7 +59,7 @@ const channels: ContactChannel[] = [
     cta: "View Repositories",
     href: "https://github.com/shiphrahblessing2-byte",
     display: "github.com/shiphrahblessing2-byte",
-    icon: <BrandImg src="https://cdn.simpleicons.org/github" alt="GitHub" />,
+    icon: <BrandImg src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" />,
     external: true,
   },
   {
