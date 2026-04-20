@@ -1,10 +1,13 @@
 import { useReveal, reveal } from "@/hooks/useReveal";
 import { ExternalLink } from "lucide-react";
+import { AWSLogo, OracleLogo } from "@/components/brand/BrandLogos";
+import type { ComponentType, SVGProps } from "react";
 
 interface Certification {
   title: string;
   issuer: string;
-  logo: string;
+  Logo: ComponentType<SVGProps<SVGSVGElement>>;
+  initials: string;
   accent: string;
 }
 
@@ -12,31 +15,36 @@ const certifications: Certification[] = [
   {
     title: "AWS Certified Cloud Practitioner",
     issuer: "Amazon Web Services",
-    logo: "https://cdn.simpleicons.org/amazonwebservices/FF9900",
+    Logo: AWSLogo,
+    initials: "AWS",
     accent: "#FF9900",
   },
   {
     title: "Oracle Cloud Infrastructure 2025 Foundations Associate",
     issuer: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle/F80000",
+    Logo: OracleLogo,
+    initials: "OR",
     accent: "#F80000",
   },
   {
     title: "Oracle Cloud Infrastructure 2025 DevOps Professional",
     issuer: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle/F80000",
+    Logo: OracleLogo,
+    initials: "OR",
     accent: "#F80000",
   },
   {
     title: "Oracle Cloud Infrastructure 2025 Generative AI Professional",
     issuer: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle/F80000",
+    Logo: OracleLogo,
+    initials: "OR",
     accent: "#F80000",
   },
   {
     title: "Oracle Cloud Infrastructure 2025 Data Science Professional",
     issuer: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle/F80000",
+    Logo: OracleLogo,
+    initials: "OR",
     accent: "#F80000",
   },
 ];
