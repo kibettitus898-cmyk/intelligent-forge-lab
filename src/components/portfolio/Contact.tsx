@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Send, Mail, FileText, CheckCircle2, ArrowRight } from "lucide-react";
 import { useReveal, reveal } from "@/hooks/useReveal";
+import { LinkedInLogo } from "@/components/brand/BrandLogos";
 
 const projectTypes = ["AI Agent", "ML Model", "Full-Stack App", "Security Automation", "Other"];
 
@@ -18,17 +19,31 @@ interface ContactChannel {
 const MailIcon = () => <Mail className="w-5 h-5" aria-hidden="true" />;
 const ResumeIcon = () => <FileText className="w-5 h-5" aria-hidden="true" />;
 
-const BrandImg = ({ src, alt }: { src: string; alt: string }) => (
-  <img
-    src={src}
-    alt={alt}
-    width={20}
-    height={20}
-    loading="lazy"
-    decoding="async"
-    className="w-5 h-5 transition-transform duration-200 group-hover:scale-110"
-  />
-);
+const BrandImg = ({ src, alt, initials }: { src: string; alt: string; initials: string }) => {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <span
+        aria-label={alt}
+        className="w-5 h-5 inline-flex items-center justify-center text-[9px] font-bold text-foreground/80 transition-transform duration-200 group-hover:scale-110"
+      >
+        {initials}
+      </span>
+    );
+  }
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={20}
+      height={20}
+      loading="lazy"
+      decoding="async"
+      onError={() => setFailed(true)}
+      className="w-5 h-5 object-contain transition-transform duration-200 group-hover:scale-110"
+    />
+  );
+};
 
 const channels: ContactChannel[] = [
   {
@@ -43,7 +58,14 @@ const channels: ContactChannel[] = [
     cta: "Connect on LinkedIn",
     href: "https://linkedin.com/in/tituskibet",
     display: "linkedin.com/in/tituskibet",
-    icon: <BrandImg src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" />,
+    icon: (
+      <LinkedInLogo
+        width={20}
+        height={20}
+        className="w-5 h-5 object-contain transition-transform duration-200 group-hover:scale-110"
+        aria-label="LinkedIn"
+      />
+    ),
     external: true,
   },
   {
@@ -51,7 +73,7 @@ const channels: ContactChannel[] = [
     cta: "Message on WhatsApp",
     href: "https://wa.me/254XXXXXXXXX",
     display: "wa.me/254XXXXXXXXX",
-    icon: <BrandImg src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" />,
+    icon: <BrandImg src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" initials="WA" />,
     external: true,
   },
   {
@@ -59,7 +81,7 @@ const channels: ContactChannel[] = [
     cta: "View Repositories",
     href: "https://github.com/shiphrahblessing2-byte",
     display: "github.com/shiphrahblessing2-byte",
-    icon: <BrandImg src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" />,
+    icon: <BrandImg src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" initials="GH" />,
     external: true,
   },
   {
