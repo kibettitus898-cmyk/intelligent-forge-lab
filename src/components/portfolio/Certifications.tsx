@@ -86,14 +86,11 @@ export function Certifications() {
                       className="w-10 h-10 shrink-0 rounded-md bg-white flex items-center justify-center p-1.5 ring-1 ring-black/5"
                       aria-hidden="true"
                     >
-                      <img
-                        src={cert.logo}
-                        alt={`${cert.issuer} logo`}
+                      <cert.Logo
                         width={32}
                         height={32}
-                        loading="lazy"
-                        decoding="async"
                         className="w-full h-full object-contain"
+                        aria-label={`${cert.issuer} logo`}
                       />
                     </div>
                     <div className="flex-1 min-w-0">
