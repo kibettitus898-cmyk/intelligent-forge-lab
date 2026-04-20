@@ -1,4 +1,5 @@
 import { Mail } from "lucide-react";
+import { LinkedInLogo } from "@/components/brand/BrandLogos";
 
 const items = [
   {
@@ -21,13 +22,10 @@ const items = [
     label: "LinkedIn",
     href: "https://linkedin.com/in/tituskibet",
     icon: (
-      <img
-        src="https://cdn.simpleicons.org/linkedin/0A66C2"
-        alt=""
+      <LinkedInLogo
         width={20}
         height={20}
-        loading="lazy"
-        decoding="async"
+        aria-label="LinkedIn"
         className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
       />
     ),
