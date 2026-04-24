@@ -56,8 +56,8 @@ const channels: ContactChannel[] = [
   {
     label: "LinkedIn",
     cta: "Connect on LinkedIn",
-    href: "https://linkedin.com/in/tituskibet",
-    display: "linkedin.com/in/tituskibet",
+    href: "https://www.linkedin.com/in/kibet-mutai-t-6a7590216/",
+    display: "linkedin.com/in/kibet-mutai-t",
     icon: (
       <LinkedInLogo
         width={20}
@@ -71,16 +71,16 @@ const channels: ContactChannel[] = [
   {
     label: "WhatsApp",
     cta: "Message on WhatsApp",
-    href: "https://wa.me/254XXXXXXXXX",
-    display: "wa.me/254XXXXXXXXX",
+    href: "https://wa.me/254755121555",
+    display: "+254 755 121 555",
     icon: <BrandImg src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" initials="WA" />,
     external: true,
   },
   {
     label: "GitHub",
     cta: "View Repositories",
-    href: "https://github.com/shiphrahblessing2-byte",
-    display: "github.com/shiphrahblessing2-byte",
+    href: "https://github.com/kibettitus898-cmyk",
+    display: "github.com/kibettitus898-cmyk",
     icon: <BrandImg src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" initials="GH" />,
     external: true,
   },

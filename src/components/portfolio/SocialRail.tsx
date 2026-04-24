@@ -4,7 +4,7 @@ import { LinkedInLogo } from "@/components/brand/BrandLogos";
 const items = [
   {
     label: "GitHub",
-    href: "https://github.com/shiphrahblessing2-byte",
+    href: "https://github.com/kibettitus898-cmyk",
     icon: (
       <img
         src="https://cdn.simpleicons.org/github/ffffff"
@@ -20,7 +20,7 @@ const items = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/tituskibet",
+    href: "https://www.linkedin.com/in/kibet-mutai-t-6a7590216/",
     icon: (
       <LinkedInLogo
         width={20}
