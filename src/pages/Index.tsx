@@ -15,7 +15,7 @@ import { Footer } from "@/components/portfolio/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen pb-20 md:pb-0">
+    <div className="min-h-screen pb-20 md:pb-0 pt-16 md:pt-20">
       <ScrollProgress />
       <Navbar />
       <SocialRail />

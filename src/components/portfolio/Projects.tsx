@@ -41,9 +41,9 @@ const featuredProjects: Project[] = [
     outcome: "62% precision, 58% F1, fully automated weekly retraining with safety gates",
     category: "ML/AI",
     status: "Completed",
-    github: null,
-    demo: "https://huggingface.co/spaces/shiphrahb/epl-match-predictor",
-    video: null,
+    github: "https://github.com/kibettitus898-cmyk/epl-predictor-showcase",
+    demo: "https://epl-predictor-4drj.vercel.app/",
+    video: "https://youtu.be/-loOsuNXNtY",
   },
   {
     id: "ai-coding-agent",
