@@ -70,12 +70,14 @@ export function Navbar() {
     <>
       {/* Desktop / tablet top navbar */}
       <nav
-        className="sticky top-0 z-[100] transition-all"
+        className="fixed top-0 left-0 right-0 z-[100] transition-all"
         style={{
-          backgroundColor: scrolled ? "rgba(15, 17, 23, 0.88)" : "transparent",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.07)" : "1px solid transparent",
+          backgroundColor: "rgba(15, 17, 23, 0.85)",
+          backdropFilter: "blur(20px) saturate(160%)",
+          WebkitBackdropFilter: "blur(20px) saturate(160%)",
+          borderBottom: scrolled
+            ? "1px solid rgba(255,255,255,0.08)"
+            : "1px solid rgba(255,255,255,0.04)",
           transitionDuration: "240ms",
           transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
         }}
