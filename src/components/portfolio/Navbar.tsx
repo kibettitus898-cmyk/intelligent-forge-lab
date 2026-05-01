@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { Menu, X, Home, Briefcase, User, Mail } from "lucide-react";
+import { Menu, X, Home, Briefcase, User, Mail, BookOpen } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
+  { label: "Blog", href: "/blog" },
   { label: "Skills", href: "#skills" },
   { label: "Process", href: "#process" },
   { label: "Certifications", href: "#certifications" },
@@ -14,6 +16,7 @@ const navLinks = [
 const mobileTabLinks = [
   { label: "Home", href: "#hero", icon: Home },
   { label: "Work", href: "#projects", icon: Briefcase },
+  { label: "Blog", href: "/blog", icon: BookOpen },
   { label: "About", href: "#about", icon: User },
   { label: "Contact", href: "#contact", icon: Mail },
 ];
@@ -50,6 +53,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const activeSection = useActiveSection(sectionIds);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -58,12 +63,30 @@ export function Navbar() {
   }, []);
 
   const scrollTo = (href: string) => {
-    const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
     setMobileOpen(false);
+    // Route navigation (e.g. /blog)
+    if (href.startsWith("/")) {
+      navigate(href);
+      return;
+    }
+    // Hash navigation — if not on home, go home then scroll
+    const id = href.replace("#", "");
+    if (location.pathname !== "/") {
+      navigate("/");
+      // wait for home to mount, then scroll
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 80);
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const isLinkActive = (href: string) => {
+    if (href.startsWith("/")) {
+      return location.pathname === href || location.pathname.startsWith(href + "/");
+    }
+    return location.pathname === "/" && activeSection === href;
   };
 
   return (
@@ -96,7 +119,7 @@ export function Navbar() {
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
                 className={`nav-link-animated text-sm font-medium transition-colors duration-200 font-body ${
-                  activeSection === link.href
+                  isLinkActive(link.href)
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
@@ -128,7 +151,7 @@ export function Navbar() {
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
                   className={`nav-link-animated text-left text-sm font-medium transition-colors font-body ${
-                    activeSection === link.href
+                    isLinkActive(link.href)
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
@@ -153,7 +176,7 @@ export function Navbar() {
         }}
       >
         {mobileTabLinks.map(({ label, href, icon: Icon }) => {
-          const isActive = activeSection === href;
+          const isActive = isLinkActive(href);
           return (
             <button
               key={href}
