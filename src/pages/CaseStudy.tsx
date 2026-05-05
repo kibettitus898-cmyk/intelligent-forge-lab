@@ -229,6 +229,53 @@ export default function CaseStudy() {
   const { id } = useParams();
   const study = id ? caseStudies[id] : null;
 
+  // Architecture diagram for the EUR/USD Council of Specialists
+  const CouncilArchitecture = () => {
+    const layers = [
+      { icon: Database, title: "Market Data Ingestion", desc: "EUR/USD OHLCV, volatility, macro context" },
+      { icon: Layers, title: "Feature Extraction", desc: "Volatility regimes, momentum, structure features" },
+      { icon: Activity, title: "Regime Classifier", desc: "Compression · Normal · Expansion" },
+      { icon: Cpu, title: "Specialist Agents", desc: "Signal · Trend · Mean-reversion · Volatility specialists" },
+      { icon: Shield, title: "Risk Manager", desc: "Drawdown caps, exposure limits, regime-aware veto" },
+      { icon: Wallet, title: "Capital Allocator", desc: "Position sizing conditional on active regime" },
+      { icon: CheckCircle2, title: "Execution Gate", desc: "Trades only fire when regime + signal + risk align" },
+      { icon: GitBranch, title: "Trade Execution Layer", desc: "Order routing for 2–10 day swing holds" },
+      { icon: Activity, title: "Monitoring & Logging", desc: "Full decision audit trail and performance telemetry" },
+    ];
+    return (
+      <div className="mb-10">
+        <h3 className="text-card-title font-heading text-primary mb-4">Technical Architecture</h3>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {layers.map((l, i) => {
+            const Icon = l.icon;
+            return (
+              <div
+                key={l.title}
+                className="relative p-4 rounded-xl"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  backdropFilter: "blur(16px) saturate(150%)",
+                  border: "1px solid rgba(0,212,200,0.18)",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+                }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-mono text-primary/70">{String(i + 1).padStart(2, "0")}</span>
+                  <Icon className="h-4 w-4 text-primary" />
+                  <h4 className="text-sm font-heading text-foreground">{l.title}</h4>
+                </div>
+                <p className="text-xs text-muted-foreground font-body leading-relaxed">{l.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+        <p className="text-xs text-muted-foreground mt-4 font-body italic">
+          Decisions flow downward through the council. Any specialist can veto execution.
+        </p>
+      </div>
+    );
+  };
+
   if (!study) {
     return (
       <div className="min-h-screen flex items-center justify-center">
