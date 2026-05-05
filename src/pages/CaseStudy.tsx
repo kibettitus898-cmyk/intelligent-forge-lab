@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Database, Layers, Shield, Cpu, GitBranch, Activity, Wallet, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/portfolio/Navbar";
 import { Footer } from "@/components/portfolio/Footer";
@@ -194,11 +194,87 @@ const caseStudies: Record<string, {
       "Material Design 3 theming enables rapid UI iteration with consistent quality",
     ],
   },
+  "eurusd-council": {
+    title: "EUR/USD Regime-Aware Swing Trading Agent",
+    status: "Ongoing",
+    overview: "A regime-aware, multi-agent governance system — the 'EUR/USD Council of Specialists' — designed for swing trading with 2–10 day holds. The system classifies the market into Compression, Normal, and Expansion regimes and allocates capital, manages risk, and gates trade execution accordingly. It is not a price prediction engine; it is a regime-allocating risk manager that uses deep learning for signal generation, while strategy execution is gated by market regime.",
+    challenge: "Most retail trading systems rely on monolithic price-prediction models that ignore market state. They overtrade in compression regimes, mis-size positions during expansion, and lack a governance layer that can refuse to act. EUR/USD specifically exhibits sharp regime shifts that punish models trained on a single behavioural assumption.",
+    solution: "Architected a Council of Specialists where each agent owns a clear responsibility — regime classification, signal generation, risk assessment, capital allocation, and execution gating. A coordinator routes decisions through the council so that no trade is executed unless the regime, signal, and risk specialists are aligned. Deep-learning models generate directional signals; the regime classifier and risk manager decide whether those signals are allowed to act.",
+    stack: ["Python", "PyTorch", "Pandas / NumPy", "Multi-Agent Orchestration", "Regime Classification", "Risk Engine", "Backtesting Framework", "Monitoring & Logging"],
+    highlights: [
+      "Three-state regime classifier: Compression | Normal | Expansion",
+      "Deep-learning signal generation isolated from execution decisions",
+      "Risk-gated execution layer — trades only fire when regime, signal, and risk align",
+      "Capital allocator sizes positions based on the active regime",
+      "Council-of-Specialists orchestration with role-separated agents",
+      "Swing-trading horizon optimized for 2–10 day holds",
+      "Monitoring and logging layer for full decision auditability",
+    ],
+    results: [
+      "A robust regime-aware trading framework, not a black-box predictor",
+      "Reusable multi-agent architecture for market decision making",
+      "Clear separation between signal generation and execution governance",
+      "Portfolio-grade demonstration of AI orchestration and risk engineering",
+    ],
+    lessons: [
+      "Governance layers outperform prediction-only systems in regime-shifting markets",
+      "Role separation between specialists reduces silent failure modes",
+      "Refusing to trade is a first-class output, not a fallback",
+      "Regime classification is more durable than directional prediction",
+    ],
+  },
 };
 
 export default function CaseStudy() {
   const { id } = useParams();
   const study = id ? caseStudies[id] : null;
+
+  // Architecture diagram for the EUR/USD Council of Specialists
+  const CouncilArchitecture = () => {
+    const layers = [
+      { icon: Database, title: "Market Data Ingestion", desc: "EUR/USD OHLCV, volatility, macro context" },
+      { icon: Layers, title: "Feature Extraction", desc: "Volatility regimes, momentum, structure features" },
+      { icon: Activity, title: "Regime Classifier", desc: "Compression · Normal · Expansion" },
+      { icon: Cpu, title: "Specialist Agents", desc: "Signal · Trend · Mean-reversion · Volatility specialists" },
+      { icon: Shield, title: "Risk Manager", desc: "Drawdown caps, exposure limits, regime-aware veto" },
+      { icon: Wallet, title: "Capital Allocator", desc: "Position sizing conditional on active regime" },
+      { icon: CheckCircle2, title: "Execution Gate", desc: "Trades only fire when regime + signal + risk align" },
+      { icon: GitBranch, title: "Trade Execution Layer", desc: "Order routing for 2–10 day swing holds" },
+      { icon: Activity, title: "Monitoring & Logging", desc: "Full decision audit trail and performance telemetry" },
+    ];
+    return (
+      <div className="mb-10">
+        <h3 className="text-card-title font-heading text-primary mb-4">Technical Architecture</h3>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {layers.map((l, i) => {
+            const Icon = l.icon;
+            return (
+              <div
+                key={l.title}
+                className="relative p-4 rounded-xl"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  backdropFilter: "blur(16px) saturate(150%)",
+                  border: "1px solid rgba(0,212,200,0.18)",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+                }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-mono text-primary/70">{String(i + 1).padStart(2, "0")}</span>
+                  <Icon className="h-4 w-4 text-primary" />
+                  <h4 className="text-sm font-heading text-foreground">{l.title}</h4>
+                </div>
+                <p className="text-xs text-muted-foreground font-body leading-relaxed">{l.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+        <p className="text-xs text-muted-foreground mt-4 font-body italic">
+          Decisions flow downward through the council. Any specialist can veto execution.
+        </p>
+      </div>
+    );
+  };
 
   if (!study) {
     return (
@@ -219,6 +295,8 @@ export default function CaseStudy() {
       {children}
     </div>
   );
+
+  const isCouncil = id === "eurusd-council";
 
   return (
     <>
@@ -261,6 +339,8 @@ export default function CaseStudy() {
           <Section title="Solution">
             <p className="text-muted-foreground leading-relaxed font-body">{study.solution}</p>
           </Section>
+
+          {isCouncil && <CouncilArchitecture />}
 
           <Section title="Implementation Highlights">
             <ul className="space-y-2">
