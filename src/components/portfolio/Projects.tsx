@@ -6,11 +6,11 @@ import { useReveal, reveal } from "@/hooks/useReveal";
 
 const filterTabs = [
   { label: "All", ids: null },
-  { label: "AI / ML", ids: ["epl-predictor", "ai-coding-agent"] },
+  { label: "AI / ML", ids: ["epl-predictor", "ai-coding-agent", "eurusd-council"] },
   { label: "Security", ids: ["api-key-agent", "rl-red-team"] },
   { label: "Full-Stack", ids: ["tenantflow", "student-meetup"] },
   { label: "Mobile & AI", ids: ["curlcare"] },
-  { label: "Research", ids: ["rl-red-team", "api-key-agent"] },
+  { label: "Research", ids: ["rl-red-team", "api-key-agent", "eurusd-council"] },
 ];
 
 export interface Project {
@@ -72,6 +72,16 @@ const featuredProjects: Project[] = [
 ];
 
 const moreProjects: Project[] = [
+  {
+    id: "eurusd-council",
+    title: "EUR/USD Regime-Aware Swing Trading Agent",
+    summary: "A multi-agent governance system — the 'Council of Specialists' — that classifies EUR/USD market regimes (Compression, Normal, Expansion) and gates capital allocation, risk, and execution for 2–10 day swing trades. Not a price predictor — a regime-allocating risk manager.",
+    stack: ["Python", "PyTorch", "Multi-Agent Orchestration", "Regime Classification", "Risk Engine", "Backtesting"],
+    outcome: "Regime-aware decision routing with deep-learning signals gated by market state and risk governance",
+    category: "AI Research",
+    status: "Ongoing",
+    github: null, demo: null, video: null,
+  },
   {
     id: "tenantflow",
     title: "TenantFlow – Tenant & Receipt Management",
